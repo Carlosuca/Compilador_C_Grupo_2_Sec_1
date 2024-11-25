@@ -85,6 +85,11 @@ def leer_fichero(txt):
         contenido = archivo_c.read()
     return contenido
 
+def imprimir_tokens(lista):
+    for token in lista:
+        print("Linea {:6} Posicion: {:12} Tipo: {:24} Valor: {:40}".format(
+                str(token.lineno), str(token.lexpos), str(token.type), str(token.value)))
+
 # Método para generar tabla de símbolos
 def imprimir_tabla(tabla):
     encabezados = ("Linea", "Posicion", "Tipo", "Valor")
@@ -102,27 +107,32 @@ def identificar_tokens(analizador, txt):
     print("\n")
     analizador.input(str(leer_fichero(txt)))
     print('Dirección del archivo cargado: ' + txt)
+    lista_token = []
     tabla_simbolos = {}
-    print('Lista de tokens....')
-    print("\n")
+    
     while True:
         token = analizador.token()
         if not token:
             break
+        lista_token.append(token)
         tabla_simbolos[token.lexpos] = {
             'Linea': token.lineno,
             'Posicion': token.lexpos,
             'Tipo': token.type,
             'Valor': token.value
         }
-        print("Linea {:6} Posicion: {:12} Tipo: {:24} Valor: {:40}".format(
-            str(token.lineno), str(token.lexpos), str(token.type), str(token.value)))
+    return lista_token, tabla_simbolos    
+    
+    
+
+if __name__ == '__main__':
+    lista, tabla = identificar_tokens(analizador, 'test/test1.c')
+    print('Lista de tokens....')
+    print("\n")
+    imprimir_tokens(lista)
     print("\n")
     print("Tabla de simbolos...")
     print("\n")
-    imprimir_tabla(tabla_simbolos)
-
-if __name__ == '__main__':
-    identificar_tokens(analizador, './test/test1.c')
+    imprimir_tabla(tabla)
     print('\n')
     input("Presiona enter para salir")
