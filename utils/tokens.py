@@ -3,9 +3,11 @@ tokens = [
     'identificador',
     'palabra_reservada',
     'return',
-    'if',        # Condicional if
-    'else',      # Condicional else
-    'for',       # Iteración for
+    'condicion_if',        # Condicional if
+    'condicion_else',      # Condicional else
+    'bucle_while',
+    'bucle_do',
+    'bucle_for',       # Iteración for
     'scanf',     # Lectura desde teclado
     'printf',    # Escritura en consola
 
