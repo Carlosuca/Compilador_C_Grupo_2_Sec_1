@@ -1,22 +1,39 @@
 from utils.tokens import tokens
 from utils.tabla_parser import tabla_parser
 
-tabla = []
-pila = ['eof', '<_BLOQUE>']
+#https://stackoverflow.com/questions/20242479/printing-a-tree-data-structure-in-python
+class Nodo:
+    def __init__(self, value, children = []):
+        self.value = value
+        self.children = children
+
+    def __str__(self, level=0):
+        ret = "\t"*level+repr(self.value)+"\n"
+        for child in self.children:
+            ret += child.__str__(level+1)
+        return ret
+    
+    def __repr__(self):
+        return '<tree node representation>'
+
+
 
 def construir_arbol(lista_tokens):
-    print(pila)
+    pila = ['eof', '<_BLOQUE>']
+    arbol = Nodo('<PROGRAMA>')
+    pila_arbol = [arbol]
     iterador_token = iter(lista_tokens)
     token = next(iterador_token)
-    print(token)
     top = pila[-1]
     while True:
         print(pila)
         if top == token.type:
             if top == 'eof':
                 print('Terminado exitosamente')
+                print(arbol)
                 return
             pila.pop()
+            pila_arbol.pop()
             top = pila[-1]
             try:
                 token = next(iterador_token)
@@ -27,16 +44,21 @@ def construir_arbol(lista_tokens):
             print("Error: se esperaba ", top)
             print('en la posicion: ', token.lexpos)
             return
-        print(top+'\t'+token.type)
+        # print(top+'\t'+token.type)
         produccion = buscar_produccion(top, token.type)
-        print(produccion)
+        # print(produccion)
         if produccion is None:
             print("Error: NO se esperaba", token.type)
             print('en la posicion: ', token.lexpos)
             return
+        nodos = list(map(lambda i: Nodo(i), produccion))
+        pila_arbol[-1].children = nodos
         pila.pop()
+        pila_arbol.pop()
         agregar_produccion(pila, produccion)
+        agregar_produccion(pila_arbol, nodos)
         top = pila[-1]
+    
        
 
 def buscar_produccion(terminal, no_terminal):
