@@ -1,10 +1,10 @@
 reservadas = {
     # Estructuras de control
-    'if': 'palabra_reservada',
-    'else': 'palabra_reservada',
-    'for': 'palabra_reservada',
-    'while': 'palabra_reservada',
-    'do': 'palabra_reservada',
+    'if': 'condicion_if',
+    'else': 'condicion_else',
+    'for': 'bucle_for',
+    'while': 'bucle_while',
+    'do': 'bucle_do',
     'switch': 'palabra_reservada',
     'case': 'palabra_reservada',
     'break': 'palabra_reservada',
