@@ -30,8 +30,7 @@ def construir_arbol(lista_tokens):
         if top == token.type:
             if top == 'eof':
                 print('Terminado exitosamente')
-                print(arbol)
-                return
+                return arbol
             pila.pop()
             pila_arbol.pop()
             top = pila[-1]
