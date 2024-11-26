@@ -37,7 +37,7 @@ for _, row in processed_data.iterrows():
             print("'"+a_key+"'"+":", [], ",")
         else:      
             print("'"+a_key+"'"+":", str(row[a_key]).split()[::2], ",")      
-    print("}")   
+    print("},")   
         # tabla_transformada[b_key][a_key] = [row[a_key]]
 
 # Mostrar la estructura final (puedes omitir este paso en producción)
