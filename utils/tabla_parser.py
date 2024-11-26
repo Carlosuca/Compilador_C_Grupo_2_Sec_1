@@ -1,31 +1,33 @@
+from no_terminales import no_terminales as NT
+
 tabla_parser = {
-    '<_BLOQUE>': {
-        'llave_de_inicio': ['<BLOQUE>', '<_BLOQUE>'],
+    NT._BLOQUE: {
+        'llave_de_inicio': [NT.BLOQUE, NT._BLOQUE],
         'llave_de_cierre': [],
-        'identificador': ['<BLOQUE>', '<_BLOQUE>'],
-        'bucle_while': ['<BLOQUE>', '<_BLOQUE>'],
-        'bucle_do': ['<BLOQUE>', '<_BLOQUE>'],
-        'bucle_for': ['<BLOQUE>', '<_BLOQUE>'],
-        'condicion_if': ['<BLOQUE>', '<_BLOQUE>'],
+        'identificador': [NT.BLOQUE, NT._BLOQUE],
+        'bucle_while': [NT.BLOQUE, NT._BLOQUE],
+        'bucle_do': [NT.BLOQUE, NT._BLOQUE],
+        'bucle_for': [NT.BLOQUE, NT._BLOQUE],
+        'condicion_if': [NT.BLOQUE, NT._BLOQUE],
         'eof': []
     },
-    '<BLOQUE>': {
-        'llave_de_inicio': ['<INSTRUCCION>'],
-        'identificador': ['<INSTRUCCION>'],
-        'bucle_while': ['bucle_while', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre', '<INSTRUCCION_CERRADA>'],
-        'bucle_do': ['bucle_do', '<INSTRUCCION_CERRADA>', 'bucle_while', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre'],
-        'bucle_for': ['bucle_for', 'parentesis_de_inicio', 'identificador', 'punto_coma', 'identificador', 'punto_coma', 'identificador', 'parentesis_de_cierre', '<INSTRUCCION_CERRADA>'],
-        'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre', '<INSTRUCCION_CERRADA>', '<BLOQUE_ELSE>'],
+    NT.BLOQUE: {
+        'llave_de_inicio': [NT.INSTRUCCION],
+        'identificador': [NT.INSTRUCCION],
+        'bucle_while': ['bucle_while', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre', NT.INSTRUCCION_CERRADA],
+        'bucle_do': ['bucle_do', NT.INSTRUCCION_CERRADA, 'bucle_while', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre'],
+        'bucle_for': ['bucle_for', 'parentesis_de_inicio', 'identificador', 'punto_coma', 'identificador', 'punto_coma', 'identificador', 'parentesis_de_cierre', NT.INSTRUCCION_CERRADA],
+        'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre', NT.INSTRUCCION_CERRADA, NT.BLOQUE_ELSE],
     },
-    '<INSTRUCCION_CERRADA>': {
-        'llave_de_inicio': ['<INSTRUCCION>'],
-        'identificador': ['<INSTRUCCION>'],
-        'bucle_while': ['bucle_while', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre', '<INSTRUCCION_CERRADA>'],
-        'bucle_do': ['bucle_do', '<INSTRUCCION_CERRADA>', 'bucle_while', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre'],
-        'bucle_for': ['bucle_for', 'parentesis_de_inicio', 'identificador', 'punto_coma', 'identificador', 'punto_coma', 'identificador', 'parentesis_de_cierre', '<INSTRUCCION_CERRADA>'],
-        'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre', '<INSTRUCCION_CERRADA>', 'condicion_else', '<INSTRUCCION_CERRADA>'],
+    NT.INSTRUCCION_CERRADA: {
+        'llave_de_inicio': [NT.INSTRUCCION],
+        'identificador': [NT.INSTRUCCION],
+        'bucle_while': ['bucle_while', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre', NT.INSTRUCCION_CERRADA],
+        'bucle_do': ['bucle_do', NT.INSTRUCCION_CERRADA, 'bucle_while', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre'],
+        'bucle_for': ['bucle_for', 'parentesis_de_inicio', 'identificador', 'punto_coma', 'identificador', 'punto_coma', 'identificador', 'parentesis_de_cierre', NT.INSTRUCCION_CERRADA],
+        'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre', NT.INSTRUCCION_CERRADA, 'condicion_else', NT.INSTRUCCION_CERRADA],
     },
-    '<BLOQUE_ELSE>': {
+    NT.BLOQUE_ELSE: {
         'llave_de_inicio': [],
         'llave_de_cierre': [],
         'identificador': [],
@@ -33,16 +35,16 @@ tabla_parser = {
         'bucle_do': [],
         'bucle_for': [],
         'condicion_if': [],
-        'condicion_else': ['condicion_else', '<COLA_ELSE>'],
+        'condicion_else': ['condicion_else', NT.COLA_ELSE],
         'eof': []
     },
-    '<COLA_ELSE>': {
-        'llave_de_inicio': ['<INSTRUCCION>'],
-        'identificador': ['<INSTRUCCION>'],
-        'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre', '<COLA_ELSE>'],
+    NT.COLA_ELSE: {
+        'llave_de_inicio': [NT.INSTRUCCION],
+        'identificador': [NT.INSTRUCCION],
+        'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'identificador', 'parentesis_de_cierre', NT.COLA_ELSE],
     },
-    '<INSTRUCCION>': {
-        'llave_de_inicio': ['llave_de_inicio', '<_BLOQUE>', 'llave_de_cierre'],
+    NT.INSTRUCCION: {
+        'llave_de_inicio': ['llave_de_inicio', NT._BLOQUE, 'llave_de_cierre'],
         'identificador': ['identificador', 'punto_coma'],
     }
 }
