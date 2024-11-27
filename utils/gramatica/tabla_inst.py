@@ -3,158 +3,186 @@
 
 tabla_inst = {
 
-    '_INTRUCCION' :
-    {
-        ';': [] ,
-        'id': ['id', 'ID', ';'] ,
-        'int': ['DECLARACION', ';'] ,
-        'float': ['DECLARACION', ';'] ,
-        'char': ['DECLARACION', ';'] ,
-        'return': ['RETURN_I', ';'] ,
-        'expresion': [] ,
-        '(': [] ,
-        ')': [] ,
-        ',': [] ,
-        '=': [] ,
-        '$': [] ,
-    },
+'INSTRUCCION' :
+{
+'punto_coma': [] ,
+'identificador': ['_INSTRUCCION', 'INSTRUCCION'] ,
+'int': ['_INSTRUCCION', 'INSTRUCCION'] ,
+'float': ['_INSTRUCCION', 'INSTRUCCION'] ,
+'char': ['_INSTRUCCION', 'INSTRUCCION'] ,
+'void': ['_INSTRUCCION', 'INSTRUCCION'] ,
+'return': ['_INSTRUCCION', 'INSTRUCCION'] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+'llave_de_cierre': ['e'] ,
+'coma': [] ,
+'asignacion': [] ,
+'EOF': [] ,
+},
 
-    'ID' :
-    {
-        ';': ['D_INIT'] ,
-        'id': [] ,
-        'int': [] ,
-        'float': [] ,
-        'char': [] ,
-        'return': [] ,
-        'expresion': [] ,
-        '(': ['FUNTION_CALL'] ,
-        ')': [] ,
-        ',': [] ,
-        '=': ['D_INIT'] ,
-        '$': [] ,
-    },
+'_INSTRUCCION' :
+{
+'punto_coma': [] ,
+'identificador': ['identificador', 'ID', 'punto_coma'] ,
+'int': ['DECLARACION', 'punto_coma'] ,
+'float': ['DECLARACION', 'punto_coma'] ,
+'char': ['DECLARACION', 'punto_coma'] ,
+'void': ['DECLARACION', 'punto_coma'] ,
+'return': ['RETURN_I', 'punto_coma'] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+'coma': [] ,
+'asignacion': [] ,
+'EOF': [] ,
+},
 
-    'TIPO' :
-    {
-        ';': [] ,
-        'id': [] ,
-        'int': ['int'] ,
-        'float': ['float'] ,
-        'char': ['char'] ,
-        'return': [] ,
-        'expresion': [] ,
-        '(': [] ,
-        ')': [] ,
-        ',': [] ,
-        '=': [] ,
-        '$': [] ,
-    },
+'ID' :
+{
+'punto_coma': ['D_INIT'] ,
+'identificador': [] ,
+'int': [] ,
+'float': [] ,
+'char': [] ,
+'void': [] ,
+'return': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': ['FUNTION_CALL'] ,
+'parentesis_de_cierre': [] ,
+'coma': [] ,
+'asignacion': ['D_INIT'] ,
+'EOF': [] ,
+},
 
-    'RETURN_I' :
-    {
-        ';': [] ,
-        'id': [] ,
-        'int': [] ,
-        'float': [] ,
-        'char': [] ,
-        'return': ['return', 'EXPRESION'] ,
-        'expresion': [] ,
-        '(': [] ,
-        ')': [] ,
-        ',': [] ,
-        '=': [] ,
-        '$': [] ,
-    },
+'TIPO' :
+{
+'punto_coma': [] ,
+'identificador': [] ,
+'int': ['int'] ,
+'float': ['float'] ,
+'char': ['char'] ,
+'void': ['void'] ,
+'return': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+'coma': [] ,
+'asignacion': [] ,
+'EOF': [] ,
+},
 
-    'FUNTION_CALL' :
-    {
-        ';': [] ,
-        'id': [] ,
-        'int': [] ,
-        'float': [] ,
-        'char': [] ,
-        'return': [] ,
-        'expresion': [] ,
-        '(': ['(', 'ARGUMENT', ')'] ,
-        ')': [] ,
-        ',': [] ,
-        '=': [] ,
-        '$': [] ,
-    },
+'RETURN_I' :
+{
+'punto_coma': [] ,
+'identificador': [] ,
+'int': [] ,
+'float': [] ,
+'char': [] ,
+'void': [] ,
+'return': ['return', 'EXPRESION'] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+'coma': [] ,
+'asignacion': [] ,
+'EOF': [] ,
+},
 
-    'ARGUMENT' :
-    {
-        ';': [] ,
-        'id': [] ,
-        'int': [] ,
-        'float': [] ,
-        'char': [] ,
-        'return': [] ,
-        'expresion': ['EXPRESION', 'A_ARGUMENT'],
-        '(': [] ,
-        ')': ['e'] ,
-        ',': [] ,
-        '=': [] ,
-        '$': [] ,
-    },
+'FUNTION_CALL' :
+{
+'punto_coma': [] ,
+'identificador': [] ,
+'int': [] ,
+'float': [] ,
+'char': [] ,
+'void': [] ,
+'return': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': ['parentesis_de_inicio', 'ARGUMENT', 'parentesis_de_cierre'] ,
+'parentesis_de_cierre': [] ,
+'coma': [] ,
+'asignacion': [] ,
+'EOF': [] ,
+},
 
-    'A_ARGUMENT' :
-    {
-        ';': [] ,
-        'id': [] ,
-        'int': [] ,
-        'float': [] ,
-        'char': [] ,
-        'return': [] ,
-        'expresion': [] ,
-        '(': [] ,
-        ')': ['e'] ,
-        ',': [',', 'EXPRESION', 'A_ARGUMENT'] ,
-        '=': [] ,
-        '$': [] ,
-    },
+'ARGUMENT' :
+{
+'punto_coma': [] ,
+'identificador': ['EXPRESION', 'A_ARGUMENT'] ,
+'int': [] ,
+'float': [] ,
+'char': [] ,
+'void': [] ,
+'return': [] ,
+'constante_caracter': ['EXPRESION', 'A_ARGUMENT'] ,
+'constante_entera': ['EXPRESION', 'A_ARGUMENT'] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': ['e'] ,
+'coma': [] ,
+'asignacion': [] ,
+'EOF': [] ,
+},
 
-    'DECLARACION' :
-    {
-        ';': [] ,
-        'id': [] ,
-        'int': ['TIPO', 'id', 'D_INIT'] ,
-        'float': ['TIPO', 'id', 'D_INIT'] ,
-        'char': ['TIPO', 'id', 'D_INIT'] ,
-        'return': [] ,
-        'expresion': [] ,
-        '(': [] ,
-        ')': [] ,
-        ',': [] ,
-        '=': [] ,
-        '$': [] ,
-    },
+'A_ARGUMENT' :
+{
+'punto_coma': [] ,
+'identificador': [] ,
+'int': [] ,
+'float': [] ,
+'char': [] ,
+'void': [] ,
+'return': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': ['e'] ,
+'coma': ['coma', 'EXPRESION', 'A_ARGUMENT'] ,
+'asignacion': [] ,
+'EOF': [] ,
+},
 
-    'D_INIT' :
-    {
-        ';': ['e'] ,
-        'id': [] ,
-        'int': [] ,
-        'float': [] ,
-        'char': [] ,
-        'return': [] ,
-        'expresion': [] ,
-        '(': [] ,
-        ')': [] ,
-        ',': [] ,
-        '=': ['=', 'EXPRESION'] ,
-        '$': [] ,
-    },
+'DECLARACION' :
+{
+'punto_coma': [] ,
+'identificador': [] ,
+'int': ['TIPO', 'identificador', 'D_INIT'] ,
+'float': ['TIPO', 'identificador', 'D_INIT'] ,
+'char': ['TIPO', 'identificador', 'D_INIT'] ,
+'void': ['TIPO', 'identificador', 'D_INIT'] ,
+'return': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+'coma': [] ,
+'asignacion': [] ,
+'EOF': [] ,
+},
+
+'D_INIT' :
+{
+'punto_coma': ['e'] ,
+'identificador': [] ,
+'int': [] ,
+'float': [] ,
+'char': [] ,
+'void': [] ,
+'return': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+'coma': [] ,
+'asignacion': ['asignacion', 'EXPRESION'] ,
+'EOF': [] ,
+},
 }
 
-# INSTRUCCION -> _INTRUCCION INSTRUCCION
+# INSTRUCCION -> _INSTRUCCION INSTRUCCION
 # INSTRUCCION -> ''
 
 
-# _INTRUCCION -> DECLARACION ;
-# _INTRUCCION -> id ID ;
-# _INTRUCCION -> RETURN_I ;
+# _INSTRUCCION -> DECLARACION punto_coma
+# _INSTRUCCION -> identificador ID punto_coma
+# _INSTRUCCION -> RETURN_I punto_coma
 
 # ID -> D_INIT
 # ID -> FUNTION_CALL
@@ -164,17 +192,17 @@ tabla_inst = {
 # TIPO -> char
 # TIPO -> void
 
-# RETURN_I -> return "expresion"
+# RETURN_I -> return EXPRESION
 
 # FUNTION_CALL -> ( ARGUMENT )
 
-# ARGUMENT -> "expresion" A_ARGUMENT
+# ARGUMENT -> EXPRESION A_ARGUMENT
 # ARGUMENT -> ''
 
-# A_ARGUMENT -> , "expresion" A_ARGUMENT
+# A_ARGUMENT -> , EXPRESION A_ARGUMENT
 # A_ARGUMENT -> ''
 
 
-# DECLARACION -> TIPO id D_INIT
-# D_INIT -> = "expresion"
+# DECLARACION -> TIPO identificador D_INIT
+# D_INIT -> = EXPRESION
 # D_INIT -> ''

@@ -68,11 +68,11 @@ def buscar_produccion(no_terminal, terminal):
     # if terminal not in no_terminales:
     #     return None
 
-    print(terminal, no_terminal)
+    print("-> ", no_terminal, terminal, "\n")
+
     if no_terminal not in no_terminales:
         return None
     
-
     if no_terminal in no_terminales_ini: 
         return tabla_program[no_terminal][terminal]
 
@@ -87,7 +87,8 @@ def buscar_produccion(no_terminal, terminal):
 
 def agregar_produccion(pila, produccion):
     for i in reversed(produccion):
-        pila.append(i)
+        if(i != 'e'):
+            pila.append(i)
 
         
 

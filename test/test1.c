@@ -1,7 +1,7 @@
 int main() {
     int a = 5;
-    float b = 10.5;
+    float b = 10;
     char c = 'x';
-    printf("Hola, mundo!");
+    printf('J');
     return 0;
 }

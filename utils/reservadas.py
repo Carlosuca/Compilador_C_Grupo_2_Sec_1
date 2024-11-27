@@ -18,8 +18,8 @@ reservadas = {
     'return': 'return',
 
     # Entrada/salida (si son parte del lenguaje)
-    'scanf': 'scanf',
-    'printf': 'printf',
+    'scanf': 'identificador',
+    'printf': 'identificador',
 }
 
 

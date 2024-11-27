@@ -1,12 +1,16 @@
-Nonterminal;identificador;";";=;expresion;(;);bloque_funcion;int;float;char;void;,;$
-Program;;;;;;;;Program -> A Program;Program -> A Program;Program -> A Program;;;
-A;;;;;;;;A -> TypeSpecifier identificador GlobalDeclaration;A -> TypeSpecifier identificador GlobalDeclaration;A -> TypeSpecifier identificador GlobalDeclaration;;;
-GlobalDeclaration;;GlobalDeclaration -> VariableDec;GlobalDeclaration -> VariableAsi;;GlobalDeclaration -> Function;;;;;;;;
-VariableDec;;"VariableDec -> ;";;;;;;;;;;;
-VariableAsi;;;"VariableAsi -> = ""expresion"" ;";;;;;;;;;;
-Function;;;;;Function -> ( ParameterList ) FunctionDeclaration;;;;;;;;
-FunctionDeclaration;;"FunctionDeclaration -> ;";;;;;"FunctionDeclaration -> ""bloque_funcion""";;;;;;
-TypeSpecifier;;;;;;;;TypeSpecifier -> int;TypeSpecifier -> float;TypeSpecifier -> char;;;
-ParameterList;;;;;;ParameterList -> '';;ParameterList -> Parameter ParameterRest;ParameterList -> Parameter ParameterRest;ParameterList -> Parameter ParameterRest;ParameterList -> void;;
-Parameter;;;;;;;;Parameter -> TypeSpecifier identificador;Parameter -> TypeSpecifier identificador;Parameter -> TypeSpecifier identificador;;;
-ParameterRest;;;;;;ParameterRest -> '';;;;;;ParameterRest -> , Parameter ParameterRest;
+Nonterminal;punto_coma;identificador;int;float;char;void;return;expresion;(;);,;=;$
+INSTRUCCION;;INSTRUCCION -> _INTRUCCION INSTRUCCION;INSTRUCCION -> _INTRUCCION INSTRUCCION;INSTRUCCION -> _INTRUCCION INSTRUCCION;INSTRUCCION -> _INTRUCCION INSTRUCCION;INSTRUCCION -> _INTRUCCION INSTRUCCION;INSTRUCCION -> _INTRUCCION INSTRUCCION;;;;;;
+_INTRUCCION;;_INTRUCCION -> identificador ID punto_coma;_INTRUCCION -> DECLARACION punto_coma;_INTRUCCION -> DECLARACION punto_coma;_INTRUCCION -> DECLARACION punto_coma;_INTRUCCION -> DECLARACION punto_coma;_INTRUCCION -> RETURN_I punto_coma;;;;;;
+ID;ID -> D_INIT;;;;;;;;ID -> FUNTION_CALL;;;ID -> D_INIT;
+TIPO;;;TIPO -> int;TIPO -> float;TIPO -> char;TIPO -> void;;;;;;;
+RETURN_I;;;;;;;"RETURN_I -> return ""expresion""";;;;;;
+FUNTION_CALL;;;;;;;;;FUNTION_CALL -> ( ARGUMENT );;;;
+ARGUMENT;;;;;;;;"ARGUMENT -> ""expresion"" A_ARGUMENT";;ARGUMENT -> '';;;
+A_ARGUMENT;;;;;;;;;;A_ARGUMENT -> '';"A_ARGUMENT -> , ""expresion"" A_ARGUMENT";;
+DECLARACION;;;DECLARACION -> TIPO identificador D_INIT;DECLARACION -> TIPO identificador D_INIT;DECLARACION -> TIPO identificador D_INIT;DECLARACION -> TIPO identificador D_INIT;;;;;;;
+D_INIT;D_INIT -> '';;;;;;;;;;;"D_INIT -> = ""expresion""";
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;
+;;;;;;;;;;;;;

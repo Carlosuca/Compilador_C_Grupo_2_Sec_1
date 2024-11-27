@@ -1,7 +1,6 @@
 no_terminales_bloque = {
     '_BLOQUE',
     'BLOQUE',
-    'INSTRUCCION',
     'INSTRUCCION_CERRADA',
     'BLOQUE_ELSE',
     'COLA_ELSE'
@@ -9,7 +8,7 @@ no_terminales_bloque = {
 
 no_terminales_instruccion = {
     'INSTRUCCION',
-    '_INTRUCCION',
+    '_INSTRUCCION',
     'ID',
     'TIPO',
     'RETURN_I',

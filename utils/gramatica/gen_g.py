@@ -28,7 +28,7 @@ for _, row in processed_data.iterrows():
     b_key = row[0]  # Columna B (primera columna)
 
     print("")   
-    print("NT."+b_key, ":")   
+    print("'"+b_key+"'", ":")   
     print("{")   
     for a_key in processed_data.columns[1:]:  # Ignorar la primera columna
         # if a_key not in tabla_transformada:

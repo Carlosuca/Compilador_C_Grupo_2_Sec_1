@@ -59,6 +59,7 @@ tokens = [
     'comentario',          # Bloque de comentario
     'linea_comentario',    # Línea de comentario
 
+    'e', #vacia
     # Otros
     'error',              # Token para errores léxicos
 ]
