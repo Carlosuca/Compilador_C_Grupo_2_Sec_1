@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # Cargar el archivo CSV
-file_path = r'C:\Users\oscar\Dropbox\PC\Documents\Teo_AnalizadorSintactico\utils\tablas_ll1\instrucciones.csv'
+file_path = r'C:\Users\oscar\Dropbox\PC\Documents\Teo_AnalizadorSintactico\utils\gramatica\instrucciones.csv'
 
 # Inspeccionar el contenido crudo para entender su estructura
 with open(file_path, 'r') as file:
@@ -36,8 +36,9 @@ for _, row in processed_data.iterrows():
         if str(row[a_key]) == "nan": 
             print("'"+a_key+"'"+":", [], ",")
         else:      
-            print("'"+a_key+"'"+":", str(row[a_key]).split()[::2], ",")      
+            print("'"+a_key+"'"+":", str(row[a_key]).split()[2:], ",")      
     print("},")   
         # tabla_transformada[b_key][a_key] = [row[a_key]]
 
 # Mostrar la estructura final (puedes omitir este paso en producción)
+# 

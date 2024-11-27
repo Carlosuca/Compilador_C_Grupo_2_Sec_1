@@ -2,7 +2,7 @@ from c_lexer import *
 from c_parser import *
 
 if __name__ == '__main__':
-    lista, tabla = identificar_tokens(analizador, 'test/parsertest1.c')
+    lista, tabla = identificar_tokens(analizador, r'C:\Users\oscar\Dropbox\PC\Documents\Teo_AnalizadorSintactico\test\test1.c')
 
     print('Lista de tokens....')
     print("\n")

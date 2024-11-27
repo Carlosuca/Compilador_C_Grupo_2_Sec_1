@@ -1,0 +1,12 @@
+Nonterminal;identificador;";";=;expresion;(;);bloque_funcion;int;float;char;void;,;$
+Program;;;;;;;;Program -> A Program;Program -> A Program;Program -> A Program;;;
+A;;;;;;;;A -> TypeSpecifier identificador GlobalDeclaration;A -> TypeSpecifier identificador GlobalDeclaration;A -> TypeSpecifier identificador GlobalDeclaration;;;
+GlobalDeclaration;;GlobalDeclaration -> VariableDec;GlobalDeclaration -> VariableAsi;;GlobalDeclaration -> Function;;;;;;;;
+VariableDec;;"VariableDec -> ;";;;;;;;;;;;
+VariableAsi;;;"VariableAsi -> = ""expresion"" ;";;;;;;;;;;
+Function;;;;;Function -> ( ParameterList ) FunctionDeclaration;;;;;;;;
+FunctionDeclaration;;"FunctionDeclaration -> ;";;;;;"FunctionDeclaration -> ""bloque_funcion""";;;;;;
+TypeSpecifier;;;;;;;;TypeSpecifier -> int;TypeSpecifier -> float;TypeSpecifier -> char;;;
+ParameterList;;;;;;ParameterList -> '';;ParameterList -> Parameter ParameterRest;ParameterList -> Parameter ParameterRest;ParameterList -> Parameter ParameterRest;ParameterList -> void;;
+Parameter;;;;;;;;Parameter -> TypeSpecifier identificador;Parameter -> TypeSpecifier identificador;Parameter -> TypeSpecifier identificador;;;
+ParameterRest;;;;;;ParameterRest -> '';;;;;;ParameterRest -> , Parameter ParameterRest;

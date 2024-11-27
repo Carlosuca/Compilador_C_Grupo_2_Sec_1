@@ -1,8 +1,0 @@
-no_terminales = {
-    '_BLOQUE': '<_BLOQUE>',
-    'BLOQUE': '<BLOQUE>',
-    'INSTRUCCION': '<INSTRUCCION>',
-    'INSTRUCCION_CERRADA': '<INSTRUCCION_CERRADA>',
-    'BLOQUE_ELSE': '<BLOQUE_ELSE>',
-    'COLA_ELSE': '<COLA_ELSE>',
-}
