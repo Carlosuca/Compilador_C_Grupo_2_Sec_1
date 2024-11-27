@@ -40,14 +40,14 @@ def t_linea_comentario(token):
     pass  # Ignorar los comentarios de línea
 
 # Manejo de constantes
-def t_constante_entera(token):
-    r'\d+'
-    token.value = int(token.value)
-    return token
-
 def t_constante_flotante(token):
     r'\d+\.\d*([eE][+-]?\d+)?'
     token.value = float(token.value)
+    return token
+
+def t_constante_entera(token):
+    r'\d+'
+    token.value = int(token.value)
     return token
 
 def t_constante_caracter(token):

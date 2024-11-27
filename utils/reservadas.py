@@ -20,6 +20,10 @@ reservadas = {
     # Entrada/salida (si son parte del lenguaje)
     'scanf': 'identificador',
     'printf': 'identificador',
+    
+    #Operadores boleanos 
+    'true': 'true',
+    'false': 'false',
 }
 
 
