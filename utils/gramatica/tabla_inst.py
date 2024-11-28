@@ -18,6 +18,13 @@ tabla_inst = {
 'llave_de_cierre': ['e'] ,
 'coma': [] ,
 'asignacion': [] ,
+'llave_de_inicio': ['llave_de_inicio', 'BLOQUE', '_BLOQUE'],
+'llave_de_cierre': [],
+'bucle_while': ['BLOQUE', '_BLOQUE'],
+'bucle_do': ['BLOQUE', '_BLOQUE'],
+'bucle_for': ['BLOQUE', '_BLOQUE'],
+'condicion_if': ['BLOQUE', '_BLOQUE'],
+
 'EOF': [] ,
 },
 

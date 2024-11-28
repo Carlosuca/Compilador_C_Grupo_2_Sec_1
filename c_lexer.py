@@ -90,17 +90,17 @@ def imprimir_tokens(lista):
         print("Linea {:6} Posicion: {:12} Tipo: {:24} Valor: {:40}".format(
                 str(token.lineno), str(token.lexpos), str(token.type), str(token.value)))
 
-# Método para generar tabla de símbolos
-def imprimir_tabla(tabla):
-    encabezados = ("Linea", "Posicion", "Tipo", "Valor")
-    # Imprimir encabezados
-    print("| {:<10} | {:<10} | {:<25} | {:<35} |".format(*encabezados))
-    print("|{:-<12}|{:-<12}|{:-<27}|{:-<37}|".format('', '', '', ''))
+# # Método para generar tabla de símbolos
+# def imprimir_tabla(tabla):
+#     encabezados = ("Linea", "Posicion", "Tipo", "Valor")
+#     # Imprimir encabezados
+#     print("| {:<10} | {:<10} | {:<25} | {:<35} |".format(*encabezados))
+#     print("|{:-<12}|{:-<12}|{:-<27}|{:-<37}|".format('', '', '', ''))
 
-    for lexpos, data in tabla.items():
-        fila = "| {:<10} | {:<10} | {:<25} | {:<35} |".format(
-            data['Linea'], data['Posicion'], data['Tipo'], data['Valor'])
-        print(fila)
+#     for lexpos, data in tabla.items():
+#         fila = "| {:<10} | {:<10} | {:<25} | {:<35} |".format(
+#             data['Linea'], data['Posicion'], data['Tipo'], data['Valor'])
+#         print(fila)
 
 # Función para identificar tokens
 def identificar_tokens(analizador, txt):

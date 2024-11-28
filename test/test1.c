@@ -1,7 +1,15 @@
+int a, b;
+
+int juarez();
+
 int main() {
+
+    if(a){
+        printf('J');
+    }
+
     int a = 5;
     float b = 10;
     char c = 'x';
-    printf('J');
     return 0;
 }

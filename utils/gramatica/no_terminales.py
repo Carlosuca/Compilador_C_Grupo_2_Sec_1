@@ -24,17 +24,19 @@ no_terminales_exp = {
 }
 
 no_terminales_ini = {
-    'PROGRAM',
-    'A',
-    'GlobalDeclaration',
-    'VariableDec',
-    'VariableAsi',
-    'Function',
-    'FunctionDeclaration',
-    'TypeSpecifier',
-    'ParameterList',
-    'Parameter',
-    'ParameterRest'
+'PROGRAMA',
+'A',
+'B',
+'C',
+'GlobalDeclaration',
+'VariableDeclaration',
+'VariableInit',
+'FunctionDeclaration',
+'FunctionStruct',
+'TypeSpecifier',
+'ParameterList',
+'Parameter',
+'ParameterRest',
 }
 
 no_terminales = no_terminales_bloque.union(no_terminales_instruccion).union(no_terminales_exp).union(no_terminales_ini)

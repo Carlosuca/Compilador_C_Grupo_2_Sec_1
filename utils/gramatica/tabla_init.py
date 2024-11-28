@@ -2,17 +2,17 @@
 # PROGRAM -> A PROGRAM
 # PROGRAM -> ''
 
-
-# A -> TypeSpecifier I GlobalDeclaration 
+# A -> TypeSpecifier B
+# B -> identificador GlobalDeclaration 
 
 # GlobalDeclaration -> VariableDeclaration
+# GlobalDeclaration -> VariableInit
 # GlobalDeclaration -> FunctionDeclaration
 
 # VariableDeclaration -> punto_coma
+# VariableInit -> coma B
 
 # FunctionDeclaration -> ( ParameterList ) punto_coma
-
-# ParameterList ) punto_coma
 
 # TypeSpecifier -> int
 # TypeSpecifier -> float
@@ -20,202 +20,231 @@
 
 # ParameterList -> Parameter ParameterRest
 # ParameterList -> void
-# ParameterList -> ''
+# ParameterList -> 'e'
 
 # Parameter -> TypeSpecifier Identifier
-# ParameterRest -> , Parameter ParameterRest
+# ParameterRest -> coma Parameter ParameterRest
 # ParameterRest -> ''
 
-tabla_program = {
-    'PROGRAM' :
-    {
-    'identificador': [] ,
-    'punto_coma': [] ,
-    'asignacion': [] ,
-    'expresion': [] ,
-    'parentesis_de_inicio': [] ,
-    'parentesis_de_cierre': [] ,
-    'llave_de_cierre': ['e'] ,
-    'bloque_funcion': [] ,
-    'int': ['A', 'PROGRAM'] ,
-    'float': ['A', 'PROGRAM'] ,
-    'char': ['A', 'PROGRAM'] ,
-    'void': [] ,
-    'coma': [] ,
-    'eof': [] ,
-    },
-
-    'A' :
-    {
-    'identificador': [] ,
-    'punto_coma': [] ,
-    'asignacion': [] ,
-    'expresion': [] ,
-    'parentesis_de_inicio': [] ,
-    'parentesis_de_cierre': [] ,
-    'bloque_funcion': [] ,
-    'int': ['TypeSpecifier', 'identificador', 'GlobalDeclaration'] ,
-    'float': ['TypeSpecifier', 'identificador', 'GlobalDeclaration'] ,
-    'char': ['TypeSpecifier', 'identificador', 'GlobalDeclaration'] ,
-    'void': [] ,
-    'coma': [] ,
-    'eof': [] ,
-    },
-
-    'GlobalDeclaration' :
-    {
-    'identificador': [] ,
-    'punto_coma': ['VariableDec'] ,
-    'asignacion': ['VariableAsi'] ,
-    'expresion': [] ,
-    'parentesis_de_inicio': ['Function'] ,
-    'parentesis_de_cierre': [] ,
-    'bloque_funcion': [] ,
-    'int': [] ,
-    'float': [] ,
-    'char': [] ,
-    'void': [] ,
-    'coma': [] ,
-    'eof': [] ,
-    },
-
-    'VariableDec' :
-    {
-    'identificador': [] ,
-    'punto_coma': ['punto_coma'] ,
-    'asignacion': [] ,
-    'expresion': [] ,
-    'parentesis_de_inicio': [] ,
-    'parentesis_de_cierre': [] ,
-    'bloque_funcion': [] ,
-    'int': [] ,
-    'float': [] ,
-    'char': [] ,
-    'void': [] ,
-    'coma': [] ,
-    'eof': [] ,
-    },
-
-    'VariableAsi' :
-    {
-    'identificador': [] ,
-    'punto_coma': [] ,
-    'asignacion': ['asignacion', 'EXPRESION', 'punto_coma'] ,
-    'expresion': [] ,
-    'parentesis_de_inicio': [] ,
-    'parentesis_de_cierre': [] ,
-    'bloque_funcion': [] ,
-    'int': [] ,
-    'float': [] ,
-    'char': [] ,
-    'void': [] ,
-    'coma': [] ,
-    'eof': [] ,
-    },
-
-    'Function' :
-    {
-    'identificador': [] ,
-    'punto_coma': [] ,
-    'asignacion': [] ,
-    'expresion': [] ,
-    'parentesis_de_inicio': ['parentesis_de_inicio', 'ParameterList', 'parentesis_de_cierre', 'FunctionDeclaration'] ,
-    'parentesis_de_cierre': [] ,
-    'bloque_funcion': [] ,
-    'int': [] ,
-    'float': [] ,
-    'char': [] ,
-    'void': [] ,
-    'coma': [] ,
-    'eof': [] ,
-    },
-
-    'FunctionDeclaration' :
-    {
-    'identificador': [] ,
-    'punto_coma': ['punto_coma'] ,
-    'asignacion': [] ,
-    'expresion': [] ,
-    'parentesis_de_inicio': [] ,
-    'parentesis_de_cierre': [] ,
-    'llave_de_inicio': ['llave_de_inicio', 'INSTRUCCION'] ,
-    'int': [] ,
-    'float': [] ,
-    'char': [] ,
-    'void': [] ,
-    'coma': [] ,
-    'eof': [] ,
-    },
-
-    'TypeSpecifier' :
-    {
-    'identificador': [] ,
-    'punto_coma': [] ,
-    'asignacion': [] ,
-    'expresion': [] ,
-    'parentesis_de_inicio': [] ,
-    'parentesis_de_cierre': [] ,
-    'bloque_funcion': [] ,
-    'int': ['int'] ,
-    'float': ['float'] ,
-    'char': ['char'] ,
-    'void': [] ,
-    'coma': [] ,
-    'eof': [] ,
-    },
-
-    'ParameterList' :
-    {
-    'identificador': [] ,
-    'punto_coma': [] ,
-    'asignacion': [] ,
-    'expresion': [] ,
-    'parentesis_de_inicio': [] ,
-    'parentesis_de_cierre': ['e'] ,
-    'bloque_funcion': [] ,
-    'int': ['Parameter', 'ParameterRest'] ,
-    'float': ['Parameter', 'ParameterRest'] ,
-    'char': ['Parameter', 'ParameterRest'] ,
-    'void': ['void'] ,
-    'coma': [] ,
-    'eof': [] ,
-    },
-
-    'Parameter' :
-    {
-    'identificador': [] ,
-    'punto_coma': [] ,
-    'asignacion': [] ,
-    'expresion': [] ,
-    'parentesis_de_inicio': [] ,
-    'parentesis_de_cierre': [] ,
-    'bloque_funcion': [] ,
-    'int': ['TypeSpecifier', 'identificador'] ,
-    'float': ['TypeSpecifier', 'identificador'] ,
-    'char': ['TypeSpecifier', 'identificador'] ,
-    'void': [] ,
-    'coma': [] ,
-    'eof': [] ,
-    },
-
-    'ParameterRest' :
-    {
-    'identificador': [] ,
-    'punto_coma': [] ,
-    'asignacion': [] ,
-    'expresion': [] ,
-    'parentesis_de_inicio': [] ,
-    'parentesis_de_cierre': ['e'] ,
-    'bloque_funcion': [] ,
-    'int': [] ,
-    'float': [] ,
-    'char': [] ,
-    'void': [] ,
-    'coma': ['coma', 'Parameter', 'ParameterRest'] ,
-    'eof': [] ,
-    },
-
-
+tabla_program =  {
     
+'PROGRAMA' :
+{
+'identificador': [] ,
+'punto_coma': [] ,
+'coma': [] ,
+'asignacion': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+'llave_de_cierre': ['llave_de_cierre', 'PROGRAMA'],
+'bloque': [] ,
+'int': ['A', 'PROGRAMA'] ,
+'float': ['A', 'PROGRAMA'] ,
+'char': ['A', 'PROGRAMA'] ,
+'void': [] ,
+'Identifier': [] ,
+'eof': ['eof'] ,
+},
+
+'A' :
+{
+'identificador': [] ,
+'punto_coma': [] ,
+'coma': [] ,
+'asignacion': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+'bloque': [] ,
+'int': ['TypeSpecifier', 'B'] ,
+'float': ['TypeSpecifier', 'B'] ,
+'char': ['TypeSpecifier', 'B'] ,
+'void': [] ,
+'Identifier': [] ,
+'eof': [] ,
+},
+
+'B' :
+{
+'identificador': ['identificador', 'GlobalDeclaration'] ,
+'punto_coma': [] ,
+'coma': [] ,
+'asignacion': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+'bloque': [] ,
+'int': [] ,
+'float': [] ,
+'char': [] ,
+'void': [] ,
+'Identifier': [] ,
+'eof': [] ,
+},
+
+'GlobalDeclaration' :
+{
+'identificador': [] ,
+'punto_coma': ['punto_coma'] ,
+'coma': ['coma', 'B'] ,
+'asignacion': ['VariableInit', 'C'] ,
+'expresion': [] ,
+'parentesis_de_inicio': ['FunctionDeclaration'] ,
+'parentesis_de_cierre': [] ,
+'bloque': [] ,
+'int': [] ,
+'float': [] ,
+'char': [] ,
+'void': [] ,
+'Identifier': [] ,
+'eof': [] ,
+},
+
+'C' :
+{
+'identificador': [] ,
+'punto_coma': ['punto_coma'] ,
+'coma': ['coma', 'B'] ,
+'asignacion': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+'bloque': [] ,
+'int': [] ,
+'float': [] ,
+'char': [] ,
+'void': [] ,
+'Identifier': [] ,
+'eof': [] ,
+},
+
+'VariableInit' :
+{
+'identificador': [] ,
+'punto_coma': [] ,
+'coma': [] ,
+'asignacion': ['asignacion', 'expresion'] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+'bloque': [] ,
+'int': [] ,
+'float': [] ,
+'char': [] ,
+'void': [] ,
+'Identifier': [] ,
+'eof': [] ,
+},
+
+'FunctionDeclaration' :
+{
+'identificador': [] ,
+'punto_coma': [] ,
+'coma': [] ,
+'asignacion': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': ['parentesis_de_inicio', 'ParameterList', 'parentesis_de_cierre', 'FunctionStruct'] ,
+'parentesis_de_cierre': [] ,
+'bloque': [] ,
+'int': [] ,
+'float': [] ,
+'char': [] ,
+'void': [] ,
+'Identifier': [] ,
+'eof': [] ,
+},
+
+'FunctionStruct' :
+{
+'identificador': [] ,
+'llave_de_inicio': ['BLOQUE'],
+'punto_coma': ['punto_coma'] ,
+'coma': [] ,
+'asignacion': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+
+'bloque': ['bloque'] ,
+'int': [] ,
+'float': [] ,
+'char': [] ,
+'void': [] ,
+'Identifier': [] ,
+'eof': [] ,
+},
+
+'TypeSpecifier' :
+{
+'identificador': [] ,
+'punto_coma': [] ,
+'coma': [] ,
+'asignacion': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+'bloque': [] ,
+'int': ['int'] ,
+'float': ['float'] ,
+'char': ['char'] ,
+'void': [] ,
+'Identifier': [] ,
+'eof': [] ,
+},
+
+'ParameterList' :
+{
+'identificador': [] ,
+'punto_coma': [] ,
+'coma': [] ,
+'asignacion': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': ['e'] ,
+'bloque': [] ,
+'int': ['Parameter', 'ParameterRest'] ,
+'float': ['Parameter', 'ParameterRest'] ,
+'char': ['Parameter', 'ParameterRest'] ,
+'void': ['void'] ,
+'Identifier': [] ,
+'eof': [] ,
+},
+
+'Parameter' :
+{
+'identificador': [] ,
+'punto_coma': [] ,
+'coma': [] ,
+'asignacion': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': [] ,
+'bloque': [] ,
+'int': ['TypeSpecifier', 'Identifier'] ,
+'float': ['TypeSpecifier', 'Identifier'] ,
+'char': ['TypeSpecifier', 'Identifier'] ,
+'void': [] ,
+'Identifier': [] ,
+'eof': [] ,
+},
+
+'ParameterRest' :
+{
+'identificador': [] ,
+'punto_coma': [] ,
+'coma': ['coma', 'Parameter', 'ParameterRest'] ,
+'asignacion': [] ,
+'expresion': [] ,
+'parentesis_de_inicio': [] ,
+'parentesis_de_cierre': ['e'] ,
+'bloque': [] ,
+'int': [] ,
+'float': [] ,
+'char': [] ,
+'void': [] ,
+'Identifier': [] ,
+'eof': [] ,
+},
 
 }

@@ -23,7 +23,7 @@ class Nodo:
 
 
 def construir_arbol(lista_tokens):
-    pila = ['eof', 'PROGRAM']
+    pila = ['eof', 'PROGRAMA']
     arbol = Nodo('<PROGRAMA>')
     pila_arbol = [arbol]
     iterador_token = iter(lista_tokens)
@@ -91,4 +91,30 @@ def agregar_produccion(pila, produccion):
             pila.append(i)
 
         
+def imprimir_tabla(tree):
+    # Tabla de símbolos
+    symbol_table = {}
 
+    def build_symbol_table(node, scope="global"):
+        if node.value == "GlobalDeclaration":
+            # Extrae tipo, nombre, y valor
+            type_node = next(child for child in node.children if child.value == "TypeSpecifier")
+            id_node = next(child for child in node.children if child.value == "B")
+            value_node = next((child for child in node.children if child.value == "value"), None)
+            
+            # Registra en la tabla de símbolos
+            symbol_table[id_node.value] = {
+                "type": type_node.value,
+                "value": value_node.value if value_node else None,
+                "scope": scope
+            }
+        else:
+            # Recurre en los hijos
+            for child in node.children:
+                build_symbol_table(child, scope)
+
+    # Construir la tabla
+    build_symbol_table(tree)
+
+    # Imprime la tabla
+    print(symbol_table)

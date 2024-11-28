@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # Cargar el archivo CSV
-file_path = r'C:\Users\oscar\Dropbox\PC\Documents\Teo_AnalizadorSintactico\utils\gramatica\instrucciones.csv'
+file_path = r'C:\Users\Oscar Juarez\Downloads\Untitled spreadsheet - Sheet1 (3).csv'
 
 # Inspeccionar el contenido crudo para entender su estructura
 with open(file_path, 'r') as file:
@@ -12,7 +12,7 @@ with open(file_path, 'r') as file:
 # print(raw_content[:10])
 
 # Cargar el archivo utilizando el delimitador ";", omitiendo filas vacías
-processed_data = pd.read_csv(file_path, delimiter=';', skip_blank_lines=True, encoding='utf-8')
+processed_data = pd.read_csv(file_path, delimiter=',', skip_blank_lines=True, encoding='utf-8')
 
 # Reemplazar encabezados defectuosos y eliminar filas completamente vacías
 
