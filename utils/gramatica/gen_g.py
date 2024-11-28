@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # Cargar el archivo CSV
-file_path = r'C:\Users\Oscar Juarez\Downloads\Untitled spreadsheet - Sheet1 (3).csv'
+file_path = 'utils/gramatica/block_grammar.csv'
 
 # Inspeccionar el contenido crudo para entender su estructura
 with open(file_path, 'r') as file:
@@ -34,9 +34,9 @@ for _, row in processed_data.iterrows():
         # if a_key not in tabla_transformada:
             # tabla_transformada[b_key] = {}
         if str(row[a_key]) == "nan": 
-            print("'"+a_key+"'"+":", [], ",")
+            continue #print("'"+a_key+"'"+":", [], ",")
         else:      
-            print("'"+a_key+"'"+":", str(row[a_key]).split()[2:], ",")      
+            print("\t'"+a_key+"'"+":", str(row[a_key]).split()[2:], ",")      
     print("},")   
         # tabla_transformada[b_key][a_key] = [row[a_key]]
 
