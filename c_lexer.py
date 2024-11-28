@@ -90,19 +90,7 @@ def imprimir_tokens(lista):
         print("Linea {:6} Posicion: {:12} Tipo: {:24} Valor: {:40}".format(
                 str(token.lineno), str(token.lexpos), str(token.type), str(token.value)))
 
-# # Método para generar tabla de símbolos
-# def imprimir_tabla(tabla):
-#     encabezados = ("Linea", "Posicion", "Tipo", "Valor")
-#     # Imprimir encabezados
-#     print("| {:<10} | {:<10} | {:<25} | {:<35} |".format(*encabezados))
-#     print("|{:-<12}|{:-<12}|{:-<27}|{:-<37}|".format('', '', '', ''))
 
-#     for lexpos, data in tabla.items():
-#         fila = "| {:<10} | {:<10} | {:<25} | {:<35} |".format(
-#             data['Linea'], data['Posicion'], data['Tipo'], data['Valor'])
-#         print(fila)
-
-# Función para identificar tokens
 def identificar_tokens(analizador, txt):
     print("\n")
     analizador.input(str(leer_fichero(txt)))
@@ -124,15 +112,3 @@ def identificar_tokens(analizador, txt):
     return lista_token, tabla_simbolos    
     
     
-
-if __name__ == '__main__':
-    lista, tabla = identificar_tokens(analizador, 'test/test1.c')
-    print('Lista de tokens....')
-    print("\n")
-    imprimir_tokens(lista)
-    print("\n")
-    print("Tabla de simbolos...")
-    print("\n")
-    imprimir_tabla(tabla)
-    print('\n')
-    input("Presiona enter para salir")

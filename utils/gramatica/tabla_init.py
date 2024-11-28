@@ -1,4 +1,4 @@
-
+'expresion'
 # PROGRAM -> A PROGRAM
 # PROGRAM -> ''
 
@@ -20,7 +20,7 @@
 
 # ParameterList -> Parameter ParameterRest
 # ParameterList -> void
-# ParameterList -> 'e'
+# ParameterList -> ''
 
 # Parameter -> TypeSpecifier Identifier
 # ParameterRest -> coma Parameter ParameterRest
@@ -30,7 +30,7 @@ tabla_program =  {
     
 'PROGRAMA' :
 {
-'identificador': [] ,
+'identificador': ['B'] ,
 'punto_coma': [] ,
 'coma': [] ,
 'asignacion': [] ,
@@ -42,7 +42,7 @@ tabla_program =  {
 'int': ['A', 'PROGRAMA'] ,
 'float': ['A', 'PROGRAMA'] ,
 'char': ['A', 'PROGRAMA'] ,
-'void': [] ,
+'void': ['A', 'PROGRAMA'] ,
 'Identifier': [] ,
 'eof': ['eof'] ,
 },
@@ -60,7 +60,7 @@ tabla_program =  {
 'int': ['TypeSpecifier', 'B'] ,
 'float': ['TypeSpecifier', 'B'] ,
 'char': ['TypeSpecifier', 'B'] ,
-'void': [] ,
+'void': ['TypeSpecifier', 'B'] ,
 'Identifier': [] ,
 'eof': [] ,
 },
@@ -124,7 +124,7 @@ tabla_program =  {
 'identificador': [] ,
 'punto_coma': [] ,
 'coma': [] ,
-'asignacion': ['asignacion', 'expresion'] ,
+'asignacion': ['asignacion', 'EXPRESION'] ,
 'expresion': [] ,
 'parentesis_de_inicio': [] ,
 'parentesis_de_cierre': [] ,
@@ -188,7 +188,7 @@ tabla_program =  {
 'int': ['int'] ,
 'float': ['float'] ,
 'char': ['char'] ,
-'void': [] ,
+'void': ['void'] ,
 'Identifier': [] ,
 'eof': [] ,
 },
@@ -206,7 +206,7 @@ tabla_program =  {
 'int': ['Parameter', 'ParameterRest'] ,
 'float': ['Parameter', 'ParameterRest'] ,
 'char': ['Parameter', 'ParameterRest'] ,
-'void': ['void'] ,
+'void': ['Parameter', 'ParameterRest'] ,
 'Identifier': [] ,
 'eof': [] ,
 },
@@ -224,7 +224,7 @@ tabla_program =  {
 'int': ['TypeSpecifier', 'Identifier'] ,
 'float': ['TypeSpecifier', 'Identifier'] ,
 'char': ['TypeSpecifier', 'Identifier'] ,
-'void': [] ,
+'void': ['TypeSpecifier', 'Identifier'] ,
 'Identifier': [] ,
 'eof': [] ,
 },

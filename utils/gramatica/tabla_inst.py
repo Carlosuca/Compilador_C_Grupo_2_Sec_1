@@ -19,13 +19,12 @@ tabla_inst = {
 'coma': [] ,
 'asignacion': [] ,
 'llave_de_inicio': ['llave_de_inicio', 'BLOQUE', '_BLOQUE'],
-'llave_de_cierre': [],
 'bucle_while': ['BLOQUE', '_BLOQUE'],
 'bucle_do': ['BLOQUE', '_BLOQUE'],
 'bucle_for': ['BLOQUE', '_BLOQUE'],
 'condicion_if': ['BLOQUE', '_BLOQUE'],
 
-'EOF': [] ,
+'eof': [] ,
 },
 
 '_INSTRUCCION' :
@@ -42,7 +41,7 @@ tabla_inst = {
 'parentesis_de_cierre': [] ,
 'coma': [] ,
 'asignacion': [] ,
-'EOF': [] ,
+'eof': [] ,
 },
 
 'ID' :
@@ -59,7 +58,7 @@ tabla_inst = {
 'parentesis_de_cierre': [] ,
 'coma': [] ,
 'asignacion': ['D_INIT'] ,
-'EOF': [] ,
+'eof': [] ,
 },
 
 'TIPO' :
@@ -76,7 +75,7 @@ tabla_inst = {
 'parentesis_de_cierre': [] ,
 'coma': [] ,
 'asignacion': [] ,
-'EOF': [] ,
+'eof': [] ,
 },
 
 'RETURN_I' :
@@ -93,7 +92,7 @@ tabla_inst = {
 'parentesis_de_cierre': [] ,
 'coma': [] ,
 'asignacion': [] ,
-'EOF': [] ,
+'eof': [] ,
 },
 
 'FUNTION_CALL' :
@@ -110,7 +109,7 @@ tabla_inst = {
 'parentesis_de_cierre': [] ,
 'coma': [] ,
 'asignacion': [] ,
-'EOF': [] ,
+'eof': [] ,
 },
 
 'ARGUMENT' :
@@ -128,7 +127,7 @@ tabla_inst = {
 'parentesis_de_cierre': ['e'] ,
 'coma': [] ,
 'asignacion': [] ,
-'EOF': [] ,
+'eof': [] ,
 },
 
 'A_ARGUMENT' :
@@ -145,7 +144,7 @@ tabla_inst = {
 'parentesis_de_cierre': ['e'] ,
 'coma': ['coma', 'EXPRESION', 'A_ARGUMENT'] ,
 'asignacion': [] ,
-'EOF': [] ,
+'eof': [] ,
 },
 
 'DECLARACION' :
@@ -162,7 +161,7 @@ tabla_inst = {
 'parentesis_de_cierre': [] ,
 'coma': [] ,
 'asignacion': [] ,
-'EOF': [] ,
+'eof': [] ,
 },
 
 'D_INIT' :
@@ -179,7 +178,7 @@ tabla_inst = {
 'parentesis_de_cierre': [] ,
 'coma': [] ,
 'asignacion': ['asignacion', 'EXPRESION'] ,
-'EOF': [] ,
+'eof': [] ,
 },
 }
 

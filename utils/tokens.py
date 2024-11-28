@@ -44,6 +44,7 @@ tokens = [
     'char',               # Tipo carácter
     'bool',               # Tipo booleano
     'string',             # Tipo cadena de texto
+    'void',             # Tipo cadena de texto
 
     # Delimitadores
     'punto',              # .

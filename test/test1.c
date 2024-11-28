@@ -1,15 +1,22 @@
-int a, b;
+int a = 5;
+
+float a;
 
 int juarez();
 
+void juarez_dev();
+
 int main() {
 
-    if(a){
-        printf('J');
+    char c ;
+    
+    if(a) {
+        int x = a;
     }
 
-    int a = 5;
-    float b = 10.5;
-    char c = 'x';
+    for (int i = a; i; i){
+        
+    }
+
     return 0;
 }
