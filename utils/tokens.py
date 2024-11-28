@@ -53,6 +53,8 @@ tokens = [
     'parentesis_de_cierre',  # )
     'llave_de_inicio',       # {
     'llave_de_cierre',       # }
+    'corchete_de_inicio',       # [
+    'corchete_de_cierre',       # ]
     'numeral',              # #
 
     # Comentarios

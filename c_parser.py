@@ -3,7 +3,17 @@ from utils.gramatica.no_terminales import *
 from utils.gramatica.tabla_inst import *
 from utils.gramatica.tabla_bloque import *
 from utils.gramatica.tabla_exp import *
-from utils.gramatica.tabla_init import *
+from utils.gramatica.tabla_global import *
+
+tabla_parser = {}
+
+for tabla in [tabla_global, tabla_bloque, tabla_inst, tabla_exp]:
+    for no_terminal in tabla:
+        if no_terminal not in tabla_parser:
+            tabla_parser[no_terminal] = tabla[no_terminal]
+        else:
+            tabla_parser[no_terminal] = tabla_parser[no_terminal] | tabla[no_terminal]
+            
 
 #https://stackoverflow.com/questions/20242479/printing-a-tree-data-structure-in-python
 class Nodo:
@@ -24,7 +34,7 @@ class Nodo:
 
 def construir_arbol(lista_tokens):
     pila = ['eof', 'PROGRAMA']
-    arbol = Nodo('<PROGRAMA>')
+    arbol = Nodo('PROGRAMA')
     pila_arbol = [arbol]
     iterador_token = iter(lista_tokens)
     token = next(iterador_token)
@@ -46,6 +56,8 @@ def construir_arbol(lista_tokens):
         if top in tokens:               
             print("Error: se esperaba ", top)
             print('en la posicion: ', token.lexpos)
+            print(arbol)
+            raise
             return
         # print(top+'\t'+token.type)
         produccion = buscar_produccion(top, token.type)
@@ -53,6 +65,8 @@ def construir_arbol(lista_tokens):
         if produccion is None:
             print("Error: NO se esperaba", token.type)
             print('en la posicion: ', token.lexpos)
+            print(arbol)
+            raise
             return
         nodos = list(map(lambda i: Nodo(i), produccion))
         pila_arbol[-1].children = nodos
@@ -70,9 +84,13 @@ def buscar_produccion(no_terminal, terminal):
 
     print("-> ", no_terminal, terminal, "\n")
 
-    if no_terminal not in no_terminales:
+    if no_terminal not in tabla_parser:
         return None
-    
+    if terminal not in tabla_parser[no_terminal]:
+        if '*' in tabla_parser[no_terminal]:
+            return tabla_parser[no_terminal]['*']
+        return None
+    return tabla_parser[no_terminal][terminal]
     if no_terminal in no_terminales_ini: 
         return tabla_program[no_terminal][terminal]
 
@@ -87,8 +105,7 @@ def buscar_produccion(no_terminal, terminal):
 
 def agregar_produccion(pila, produccion):
     for i in reversed(produccion):
-        if(i != 'e'):
-            pila.append(i)
+        pila.append(i)
 
         
 def imprimir_tabla(tree):
