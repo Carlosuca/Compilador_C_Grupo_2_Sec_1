@@ -1,5 +1,6 @@
 from c_lexer import *
 from c_parser import *
+from c_semantic import *
 
 if __name__ == '__main__':
     lista, tabla = identificar_tokens(analizador, 'test/test1.c')
@@ -10,6 +11,9 @@ if __name__ == '__main__':
     print("\n")
     arbol = construir_arbol(lista)
     print(arbol)
+
+    #TODO: FALTAN COMENTARIOS
+
     print("Tabla de simbolos...")
     print("\n")
     imprimir_tabla(arbol)

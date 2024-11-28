@@ -14,27 +14,12 @@ for tabla in [tabla_global, tabla_bloque, tabla_inst, tabla_exp]:
         else:
             tabla_parser[no_terminal] = tabla_parser[no_terminal] | tabla[no_terminal]
             
-
-#https://stackoverflow.com/questions/20242479/printing-a-tree-data-structure-in-python
-class Nodo:
-    def __init__(self, value, children = []):
-        self.value = value
-        self.children = children
-
-    def __str__(self, level=0):
-        ret = "\t"*level+repr(self.value)+"\n"
-        for child in self.children:
-            ret += child.__str__(level+1)
-        return ret
-    
-    def __repr__(self):
-        return '<tree node representation>'
-
+from utils.node import Nodo
 
 
 def construir_arbol(lista_tokens):
     pila = ['eof', 'PROGRAMA']
-    arbol = Nodo('PROGRAMA')
+    arbol = Nodo('PROGRAMA', "")
     pila_arbol = [arbol]
     iterador_token = iter(lista_tokens)
     token = next(iterador_token)
@@ -46,8 +31,10 @@ def construir_arbol(lista_tokens):
                 print('Terminado exitosamente')
                 return arbol
             pila.pop()
-            pila_arbol.pop()
             top = pila[-1]
+            pila_arbol[-1].value = token.value 
+            # print(1.5, pila_arbol[-1])
+            pila_arbol.pop()
             try:
                 token = next(iterador_token)
             except StopIteration:
@@ -61,19 +48,23 @@ def construir_arbol(lista_tokens):
             return
         # print(top+'\t'+token.type)
         produccion = buscar_produccion(top, token.type)
-        # print(produccion)
         if produccion is None:
             print("Error: NO se esperaba", token.type)
             print('en la posicion: ', token.lexpos)
             print(arbol)
             raise
             return
-        nodos = list(map(lambda i: Nodo(i), produccion))
+        nodos = list(map(lambda i: Nodo(i, ""), produccion))
         pila_arbol[-1].children = nodos
         pila.pop()
         pila_arbol.pop()
+        
+
         agregar_produccion(pila, produccion)
-        agregar_produccion(pila_arbol, nodos)
+
+
+        if produccion != ['e']:
+            agregar_produccion_arbol(pila_arbol, nodos)
         top = pila[-1]
     
        
@@ -82,7 +73,7 @@ def buscar_produccion(no_terminal, terminal):
     # if terminal not in no_terminales:
     #     return None
 
-    print("-> ", no_terminal, terminal, "\n")
+    print(2, "-> ", no_terminal, terminal, "\n")
 
     if no_terminal not in tabla_parser:
         return None
@@ -105,7 +96,8 @@ def buscar_produccion(no_terminal, terminal):
 
 def agregar_produccion(pila, produccion):
     for i in reversed(produccion):
-        pila.append(i)
+        if(i != 'e'):
+            pila.append(i)
 
         
 def imprimir_tabla(tree):

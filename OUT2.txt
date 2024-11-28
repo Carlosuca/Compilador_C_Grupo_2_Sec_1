@@ -1,0 +1,243 @@
+
+
+Direcci≤n del archivo cargado: C:\Users\oscar\Dropbox\PC\Documents\Teo_AnalizadorSintactico\test\test1.c
+Lista de tokens....
+
+
+Linea 1      Posicion: 0            Tipo: int                      Valor: int                                     
+Linea 1      Posicion: 4            Tipo: identificador            Valor: a                                       
+Linea 1      Posicion: 6            Tipo: asignacion               Valor: =                                       
+Linea 1      Posicion: 8            Tipo: constante_entera         Valor: 5                                       
+Linea 1      Posicion: 9            Tipo: punto_coma               Valor: ;                                       
+Linea 3      Posicion: 12           Tipo: int                      Valor: int                                     
+Linea 3      Posicion: 16           Tipo: identificador            Valor: juarez                                  
+Linea 3      Posicion: 22           Tipo: parentesis_de_inicio     Valor: (                                       
+Linea 3      Posicion: 23           Tipo: parentesis_de_cierre     Valor: )                                       
+Linea 3      Posicion: 24           Tipo: punto_coma               Valor: ;                                       
+Linea 5      Posicion: 27           Tipo: int                      Valor: int                                     
+Linea 5      Posicion: 31           Tipo: identificador            Valor: main                                    
+Linea 5      Posicion: 35           Tipo: parentesis_de_inicio     Valor: (                                       
+Linea 5      Posicion: 36           Tipo: parentesis_de_cierre     Valor: )                                       
+Linea 5      Posicion: 38           Tipo: llave_de_inicio          Valor: {                                       
+Linea 7      Posicion: 45           Tipo: char                     Valor: char                                    
+Linea 7      Posicion: 50           Tipo: identificador            Valor: c                                       
+Linea 7      Posicion: 52           Tipo: asignacion               Valor: =                                       
+Linea 7      Posicion: 54           Tipo: constante_caracter       Valor: x                                       
+Linea 7      Posicion: 57           Tipo: punto_coma               Valor: ;                                       
+Linea 8      Posicion: 63           Tipo: return                   Valor: return                                  
+Linea 8      Posicion: 70           Tipo: constante_entera         Valor: 0                                       
+Linea 8      Posicion: 71           Tipo: punto_coma               Valor: ;                                       
+Linea 9      Posicion: 73           Tipo: llave_de_cierre          Valor: }                                       
+
+
+['eof', 'PROGRAMA']
+->  PROGRAMA int 
+
+['eof', 'PROGRAMA', 'A']
+->  A int 
+
+['eof', 'PROGRAMA', 'B', 'TypeSpecifier']
+->  TypeSpecifier int 
+
+['eof', 'PROGRAMA', 'B', 'int']
+['eof', 'PROGRAMA', 'B']
+->  B identificador 
+
+['eof', 'PROGRAMA', 'GlobalDeclaration', 'identificador']
+['eof', 'PROGRAMA', 'GlobalDeclaration']
+->  GlobalDeclaration asignacion 
+
+['eof', 'PROGRAMA', 'C', 'VariableInit']
+->  VariableInit asignacion 
+
+['eof', 'PROGRAMA', 'C', 'EXPRESION', 'asignacion']
+['eof', 'PROGRAMA', 'C', 'EXPRESION']
+->  EXPRESION constante_entera 
+
+['eof', 'PROGRAMA', 'C', 'constante_entera']
+['eof', 'PROGRAMA', 'C']
+->  C punto_coma 
+
+['eof', 'PROGRAMA', 'punto_coma']
+['eof', 'PROGRAMA']
+->  PROGRAMA int 
+
+['eof', 'PROGRAMA', 'A']
+->  A int 
+
+['eof', 'PROGRAMA', 'B', 'TypeSpecifier']
+->  TypeSpecifier int 
+
+['eof', 'PROGRAMA', 'B', 'int']
+['eof', 'PROGRAMA', 'B']
+->  B identificador 
+
+['eof', 'PROGRAMA', 'GlobalDeclaration', 'identificador']
+['eof', 'PROGRAMA', 'GlobalDeclaration']
+->  GlobalDeclaration parentesis_de_inicio 
+
+['eof', 'PROGRAMA', 'FunctionDeclaration']
+->  FunctionDeclaration parentesis_de_inicio 
+
+['eof', 'PROGRAMA', 'FunctionStruct', 'parentesis_de_cierre', 'ParameterList', 'parentesis_de_inicio']
+['eof', 'PROGRAMA', 'FunctionStruct', 'parentesis_de_cierre', 'ParameterList']
+->  ParameterList parentesis_de_cierre 
+
+['eof', 'PROGRAMA', 'FunctionStruct', 'parentesis_de_cierre']
+['eof', 'PROGRAMA', 'FunctionStruct']
+->  FunctionStruct punto_coma 
+
+['eof', 'PROGRAMA', 'punto_coma']
+['eof', w]
+->  PROGRAMA int 
+
+['eof', 'PROGRAMA', 'A']
+->  A int 
+
+['eof', 'PROGRAMA', 'B', 'TypeSpecifier']
+->  TypeSpecifier int 
+
+['eof', 'PROGRAMA', 'B', 'int']
+['eof', 'PROGRAMA', 'B']
+->  B identificador 
+
+['eof', 'PROGRAMA', 'GlobalDeclaration', 'identificador']
+['eof', 'PROGRAMA', 'GlobalDeclaration']
+->  GlobalDeclaration parentesis_de_inicio 
+
+['eof', 'PROGRAMA', 'FunctionDeclaration']
+->  FunctionDeclaration parentesis_de_inicio 
+
+['eof', 'PROGRAMA', 'FunctionStruct', 'parentesis_de_cierre', 'ParameterList', 'parentesis_de_inicio']
+['eof', 'PROGRAMA', 'FunctionStruct', 'parentesis_de_cierre', 'ParameterList']
+->  ParameterList parentesis_de_cierre 
+
+['eof', 'PROGRAMA', 'FunctionStruct', 'parentesis_de_cierre']
+['eof', 'PROGRAMA', 'FunctionStruct']
+->  FunctionStruct llave_de_inicio 
+
+['eof', 'PROGRAMA', 'BLOQUE']
+->  BLOQUE llave_de_inicio 
+
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'llave_de_inicio']
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION']
+->  INSTRUCCION char 
+
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', '_INSTRUCCION']
+->  _INSTRUCCION char 
+
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma', 'DECLARACION']
+->  DECLARACION char 
+
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma', 'D_INIT', 'identificador', 'TIPO']
+->  TIPO char 
+
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma', 'D_INIT', 'identificador', 'char']
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma', 'D_INIT', 'identificador']
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma', 'D_INIT']
+->  D_INIT asignacion 
+
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma', 'EXPRESION', 'asignacion']
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma', 'EXPRESION']
+->  EXPRESION constante_caracter 
+
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma', 'constante_caracter']
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma']
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION']
+->  INSTRUCCION return 
+
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', '_INSTRUCCION']
+->  _INSTRUCCION return 
+
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma', 'RETURN_I']
+->  RETURN_I return 
+
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma', 'EXPRESION', 'return']
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma', 'EXPRESION']
+->  EXPRESION constante_entera 
+
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma', 'constante_entera']
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION', 'punto_coma']
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre', 'INSTRUCCION']
+->  INSTRUCCION llave_de_cierre 
+
+['eof', 'PROGRAMA', 'INSTRUCCION', 'llave_de_cierre']
+['eof', 'PROGRAMA', 'INSTRUCCION']
+->  INSTRUCCION eof 
+
+['eof', 'PROGRAMA']
+->  PROGRAMA eof 
+
+['eof', 'eof']
+Terminado exitosamente
+    '<PROGRAMA>'
+        'A'
+            'TypeSpecifier'
+                'int'
+            'B'
+                'identificador'
+                'GlobalDeclaration'
+                    'VariableInit'
+                        'asignacion'
+                        'EXPRESION'
+                            'constante_entera'
+                    'C'
+                        'punto_coma'
+	'PROGRAMA'
+		'A'
+			'TypeSpecifier'
+				'int'
+			'B'
+				'identificador'
+				'GlobalDeclaration'
+					'FunctionDeclaration'
+						'parentesis_de_inicio'
+						'ParameterList'
+							'e'
+						'parentesis_de_cierre'
+							'punto_coma'
+						'FunctionStruct'
+        'A'
+            'TypeSpecifier'
+                'int'
+            'B'
+                'identificador'
+                'GlobalDeclaration'
+                    'FunctionDeclaration'
+                        'parentesis_de_inicio'
+                        'ParameterList'
+                            'e'
+                        'parentesis_de_cierre'
+                            'BLOQUE'
+                                'llave_de_inicio'
+                                'INSTRUCCION'
+                                    '_INSTRUCCION'
+                                        'DECLARACION'
+                                            'TIPO'
+                                                'char'
+                                            'identificador'
+                                            'D_INIT'
+                                                'asignacion'
+                                                'EXPRESION'
+                                                    'constante_caracter'
+                                        'punto_coma'
+                                    'INSTRUCCION'
+                                        '_INSTRUCCION'
+                                            'RETURN_I'
+                                                'return'
+                                                'EXPRESION'
+                                                    'constante_entera'
+                                            'punto_coma'
+                                        'INSTRUCCION'
+                                'llave_de_cierre'
+                                'INSTRUCCION'
+                        'FunctionStruct'
+                            'eof'
+        'PROGRAMA'
+		'PROGRAMA'
+
+Tabla de simbolos...
+
+
+
+
