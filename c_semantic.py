@@ -56,6 +56,8 @@ block_counter = 0
 def find_node_by_type(node, target_type, depth=-1):
     # Verifica si el nodo actual tiene el tipo deseado
         # print(node.type)
+        if node is None:
+            return None
         if node.type == target_type:
             return node
 
@@ -72,7 +74,8 @@ def find_node_by_type(node, target_type, depth=-1):
 def build_symbol_table(node, symbol_table):
         # TODO: Parametros y valores inicialse de variables
         # print(find_node_by_type(node, 'DECLARACION'))
-        
+        if node is None:
+            return
         if node.type == "INSTRUCCION_B" or node.type == "GLOBAL":
             type_node = find_node_by_type(node, "INSTRUCCION", 1)
             source = node
