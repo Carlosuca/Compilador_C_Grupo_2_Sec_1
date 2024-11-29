@@ -2,7 +2,7 @@ int a = 5;
 
 float z;
 
-int juarez();
+int juarez(int aa, float bb, char cc){}
 
 void juarez_dev();
 

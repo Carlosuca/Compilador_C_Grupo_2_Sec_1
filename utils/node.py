@@ -15,8 +15,8 @@ class Nodo:
         #     val = self.type + "@" + self.scope
         # else: 
         #     val =  self.type + " -> " + str(self.value) + "@" + self.scope
-
-        ret = "\t"*level+repr(val)+"\n"
+        
+        ret = "\t"*level+repr(self)+"\n"
 
         for child in self.children:
             ret += child.__str__(level+1)
@@ -37,5 +37,5 @@ class Nodo:
         if self.value == "":
             return self.type
         else: 
-            return self.type + "->" + self.value 
+            return str(self.type) + " -> " + str(self.value) + str(self.scope)
 

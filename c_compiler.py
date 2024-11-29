@@ -11,7 +11,7 @@ if __name__ == '__main__':
     # imprimir_tokens(lista)
     print("\n")
     arbol = construir_arbol(lista)
-    # print(arbol)
+    print(arbol)
 
     #TODO: FALTAN COMENTARIOS
 
