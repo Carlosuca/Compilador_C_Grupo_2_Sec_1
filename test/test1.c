@@ -12,6 +12,8 @@ void juarez_dev();
 int main() {
 
     int b = 15;
+
+    int b = 15;
     
     // printf();
 
