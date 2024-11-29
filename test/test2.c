@@ -10,7 +10,7 @@ int main() {
 
     char c/;
     
-    if(a) {
+    if(a {
         int x = a;
     }
 

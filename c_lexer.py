@@ -94,7 +94,7 @@ def imprimir_tokens(lista):
 def identificar_tokens(analizador, txt):
     print("\n")
     analizador.input(str(leer_fichero(txt)))
-    print('Dirección del archivo cargado: ' + txt)
+    # print('Dirección del archivo cargado: ' + txt)
     lista_token = []
     tabla_simbolos = {}
     

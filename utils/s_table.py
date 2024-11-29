@@ -114,6 +114,20 @@ class SymbolTable:
                 return result
         
         return None
+
+    def get_symbol(self, identifier_name):
+
+        if identifier_name in self.symbols:
+                return self.symbols[identifier_name]
+        
+        # Recorrer sub-ámbitos (hijos)
+        for child_scope in self.children.values():
+            result = child_scope.get_symbol(identifier_name)
+            if result:
+                return result
+        
+        return None
+
 block_counter = 0
 
 def find_node_by_type(node, target_type, depth=-1):
