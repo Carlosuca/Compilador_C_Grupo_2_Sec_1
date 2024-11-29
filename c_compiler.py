@@ -8,7 +8,7 @@ if __name__ == '__main__':
 
     print('Lista de tokens....')
     print("\n")
-    imprimir_tokens(lista)
+    # imprimir_tokens(lista)
     print("\n")
     arbol = construir_arbol(lista)
     # print(arbol)
@@ -18,10 +18,10 @@ if __name__ == '__main__':
     print("Tabla de simbolos...")
     print("\n")
     tabla = construir_tabla(arbol)
-    print(tabla)
+    # print(tabla)
     # print(arbol)
 
-    # analisis_semantico(tabla, arbol)
+    analisis_semantico(arbol, tabla)
 
     print('\n')
     input("Presiona enter para salir")

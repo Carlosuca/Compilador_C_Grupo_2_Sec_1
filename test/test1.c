@@ -15,7 +15,7 @@ int main() {
     }
 
     for (int i = a; i == 365; i+1){
-        print(i);
+        // printf(i);
         x = 25;
     }
     isActive = true;
