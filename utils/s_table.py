@@ -8,6 +8,7 @@ class Identifier:
         self.name = name
         self.type = type
         self.ivalue = ivalue
+        self.usage_count = 0  
 
     def __str__(self):
         return "ID {:16} Tipo: {:16} Inicial: {:32}".format(
@@ -31,6 +32,34 @@ class SymbolTable:
         if scope in self.children: return
         self.children[scope] = SymbolTable(scope,self)
 
+    def increment_usage(self, identifier_name):
+        """
+        Incrementa el contador de uso de un identificador y devuelve el valor actual.
+        
+        :param identifier_name: El nombre del identificador cuyo uso se incrementará.
+        :return: El nuevo valor de usage_count si el identificador existe, None si no.
+        """
+        # Búsqueda recursiva en el ámbito actual y sus hijos
+        def search_and_increment(scope):
+            # Verificar si el identificador está en el ámbito actual
+            if identifier_name in scope.symbols:
+                symbol = scope.symbols[identifier_name]
+                if not hasattr(symbol, 'usage_count'):
+                    symbol.usage_count = 0  # Inicializar en caso de que no exista
+                symbol.usage_count += 1
+                return symbol.usage_count
+
+            # Recorrer sub-ámbitos (hijos)
+            for child_scope in scope.children.values():
+                result = search_and_increment(child_scope)
+                if result:
+                    return result
+
+            return None  # Identificador no encontrado
+
+        # Iniciar la búsqueda desde el ámbito actual
+        return search_and_increment(self)
+
     #Formateo para vizualizar niveles de ambito
     def printString(self,l):
         out = ''
@@ -49,6 +78,44 @@ class SymbolTable:
     def __str__(self):
         return self.printString(0)
     
+
+    def exists_in_scope(self, scope_name, identifier_name):
+        """
+        Verifica si un identificador existe en el ámbito dado o en sus padres.
+        
+        :param scope_name: El nombre del ámbito donde iniciar la búsqueda.
+        :param identifier_name: El nombre del identificador que se busca.
+        :return: True si el identificador existe en el ámbito, False en caso contrario.
+        """
+        # Buscar el scope
+        current_scope = self.find_scope(scope_name)
+        if not current_scope:
+            return False  # Ámbito no encontrado
+        
+        # Buscar en el scope actual y sus padres
+        while current_scope:
+            if identifier_name in current_scope.symbols:
+                return True
+            current_scope = current_scope.parent
+        
+        return False
+
+    def find_scope(self, scope_name):
+        """
+        Encuentra un ámbito a partir de su nombre, buscando de forma recursiva en los sub-ambitos.
+        
+        :param scope_name: Nombre del ámbito a buscar.
+        :return: El ámbito (objeto SymbolTable) si lo encuentra, None en caso contrario.
+        """
+        if self.scope == scope_name:
+            return self
+
+        for child_scope in self.children.values():
+            result = child_scope.find_scope(scope_name)
+            if result:
+                return result
+        
+        return None
 block_counter = 0
 
 def find_node_by_type(node, target_type, depth=-1):
@@ -77,6 +144,7 @@ def build_symbol_table(node, symbol_table):
                 global block_counter
                 block_counter += 1
                 symbol_table.addScope("@blk_"+str(node.children[0].value))
+                node.addScope("@blk_"+str(node.children[0].value))
                 blk_node = find_node_by_type(inst_node, "BLOQUE", 2)
                 if blk_node is not None:
                     build_symbol_table(blk_node,symbol_table.children["@blk_"+str(node.children[0].value)])
@@ -108,6 +176,8 @@ def build_symbol_table(node, symbol_table):
                     func_def = find_node_by_type(func, "BLOQUE", 1)
                     if func_def is not None:
                         symbol_table.addScope(symbol_table.symbols[id_node].ivalue)
+                        node.addScope(symbol_table.symbols[id_node].ivalue)
+                        # node.print_values()
                         build_symbol_table(func_def,symbol_table.children[symbol_table.symbols[id_node].ivalue])
                 else:
                     if type_node.type != "void":
@@ -126,7 +196,8 @@ def construir_tabla(tree):
     global block_counter
     block_counter = 0
     symbol_table = build_symbol_table(find_node_by_type(tree, "_GLOBAL", 1), SymbolTable('global', None))
-
+    tree.addScope('global')
+    # node.print_values()
     # Imprime la tabla
     
     return symbol_table
