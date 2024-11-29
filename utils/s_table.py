@@ -71,6 +71,19 @@ def build_symbol_table(node, symbol_table):
         # TODO: Parametros y valores inicialse de variables
         # print(find_node_by_type(node, 'DECLARACION'))
         
+        if node.type == "INSTRUCCION_B" or node.type == "INSTRUCCION_C":
+            inst_node = find_node_by_type(node, "INSTRUCCION_C", 1)
+            if inst_node is not None:
+                global block_counter
+                block_counter += 1
+                symbol_table.addScope("@blk_"+str(node.children[0].value))
+                blk_node = find_node_by_type(inst_node, "BLOQUE", 2)
+                if blk_node is not None:
+                    build_symbol_table(blk_node,symbol_table.children["@blk_"+str(node.children[0].value)])
+                else:
+                    build_symbol_table(find_node_by_type(inst_node, "INSTRUCCION", 1),symbol_table.children["@blk_"+str(node.children[0].value)])
+                symbol_table = symbol_table.children["@blk_"+str(node.children[0].value)]
+
         if node.type == "INSTRUCCION_B" or node.type == "GLOBAL":
             type_node = find_node_by_type(node, "INSTRUCCION", 1)
             source = node
@@ -100,17 +113,7 @@ def build_symbol_table(node, symbol_table):
                     if type_node.type != "void":
                         symbol_table.addEntry(id_node,data_type)
 
-        if node.type == "INSTRUCCION_B" or node.type == "INSTRUCCION_C":
-            inst_node = find_node_by_type(node, "INSTRUCCION_C", 1)
-            if inst_node is not None:
-                global block_counter
-                block_counter += 1
-                symbol_table.addScope("@blk_"+str(node.children[0].value))
-                blk_node = find_node_by_type(inst_node, "BLOQUE", 2)
-                if blk_node is not None:
-                    build_symbol_table(blk_node,symbol_table.children["@blk_"+str(node.children[0].value)])
-                else:
-                    build_symbol_table(find_node_by_type(inst_node, "INSTRUCCION", 1),symbol_table.children["@blk_"+str(node.children[0].value)])
+        
         if node.type == "_GLOBAL" or node.type == "BLOQUE":
             for child in node.children:
                 build_symbol_table(child, symbol_table)
