@@ -1,5 +1,3 @@
-from utils.node import Nodo
-
 ## Tabla de Simbolos extendida, incluyendo ambitos y valores iniciales (algunos)
 
 
@@ -54,13 +52,14 @@ block_counter = 0
 def find_node_by_type(node, target_type, depth=-1):
     # Verifica si el nodo actual tiene el tipo deseado
         # print(node.type)
-        if node.type == target_type:
-            return node
+        
 
         if depth == 0:
             return None
         # Recurre en los hijos del nodo actual
         for child in node.children:
+            if child.type == target_type:
+                return child
             result = find_node_by_type(child, target_type, depth-1)
             if result is not None:  # Si se encuentra, se devuelve
                 return result
@@ -108,15 +107,37 @@ def build_symbol_table(node, symbol_table):
                     func_def = find_node_by_type(func, "BLOQUE", 1)
                     if func_def is not None:
                         symbol_table.addScope(symbol_table.symbols[id_node].ivalue)
+
+                        param = find_node_by_type(node, "PARAMETROS", 2)
+                        if param is not None:
+                            build_symbol_table(param,symbol_table.children[symbol_table.symbols[id_node].ivalue])
                         build_symbol_table(func_def,symbol_table.children[symbol_table.symbols[id_node].ivalue])
                 else:
                     if type_node.type != "void":
                         symbol_table.addEntry(id_node,data_type)
 
         
+        if node.type == "PARAMETROS" or node.type == "_PARAMETROS":
+            type_node = find_node_by_type(node, "TIPO", 1)
+            if type_node is not None:
+                data_type = type_node.type
+                id_node = find_node_by_type(node, "identificador", 1).value
+                symbol_table.addEntry(id_node,data_type)
+                next_param = find_node_by_type(node, "_PARAMETROS", 1)
+                if next_param is not None:
+                    build_symbol_table(next_param,symbol_table)
+
+
         if node.type == "_GLOBAL" or node.type == "BLOQUE":
             for child in node.children:
                 build_symbol_table(child, symbol_table)
+
+        if node.type == "PROGRAMA":
+            symbol_table.addEntry("printf","function void","@printf")
+            symbol_table.addEntry("scanf","function void","@scanf")
+            build_symbol_table(find_node_by_type(node, "_GLOBAL", 1), symbol_table)
+                
+
         return symbol_table
 
 def construir_tabla(tree):
@@ -125,7 +146,7 @@ def construir_tabla(tree):
     # Construir la tabla
     global block_counter
     block_counter = 0
-    symbol_table = build_symbol_table(find_node_by_type(tree, "_GLOBAL", 1), SymbolTable('global', None))
+    symbol_table = build_symbol_table(tree, SymbolTable('@global', None))
 
     # Imprime la tabla
     
