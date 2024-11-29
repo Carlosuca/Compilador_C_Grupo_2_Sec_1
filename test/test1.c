@@ -1,7 +1,7 @@
 // #include <stdio.h>
 // #include <stdbool.h>
 
-int a = 5;
+int a = 5, zz, yy=8;
 
 char z;
 

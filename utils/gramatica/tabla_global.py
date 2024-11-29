@@ -1,8 +1,8 @@
 tabla_global = {
-    'PROGRAMA' :
+        'PROGRAMA' :
     {
             'void': ['_GLOBAL'] ,
-            'int': ['_GLOBAL'] ,
+            'int': ['_GLOBAL'] , 
             'float': ['_GLOBAL'] ,
             'char': ['_GLOBAL'] ,
             'eof': ['_GLOBAL'] ,
@@ -19,40 +19,40 @@ tabla_global = {
 
     'GLOBAL' :
     {
-            'void': ['void', 'identificador', 'parentesis_de_inicio', 'PARAMETROS', 'parentesis_de_cierre', 'FUNCIONG_COLA'] ,
-            'int': ['TIPO', 'identificador', 'DECLARACION_GLBL'] ,
-            'float': ['TIPO', 'identificador', 'DECLARACION_GLBL'] ,
-            'char': ['TIPO', 'identificador', 'DECLARACION_GLBL'] ,
+            'void': ['void', '#DcT', 'identificador', '#DcI', 'parentesis_de_inicio', '#DcF', '#BFB','PARAMETROS', 'parentesis_de_cierre', 'FUNCION_COLA', '#EBl', '#Pop', '#Pop'] ,
+            'int': ['TIPO', '#DcT', 'identificador', '#DcI', 'DECLARACION_CONST', '#Pop', '#Pop'] ,
+            'float': ['TIPO', '#DcT', 'identificador', '#DcI', 'DECLARACION_CONST', '#Pop', '#Pop'] ,
+            'char': ['TIPO', '#DcT', 'identificador', '#DcI', 'DECLARACION_CONST', '#Pop', '#Pop'] ,
     },
 
-    'DECLARACION_GLBL' :
+    'DECLARACION_CONST' :
     {
-            'void': ['ASIGNACION', '_ASIGNACION_CONST', 'punto_coma'] ,
-            'parentesis_de_inicio': ['parentesis_de_inicio', 'PARAMETROS', 'parentesis_de_cierre', 'FUNCIONG_COLA'] ,
-            'punto_coma': ['ASIGNACION', '_ASIGNACION_CONST', 'punto_coma'] ,
-            'coma': ['ASIGNACION', '_ASIGNACION_CONST', 'punto_coma'] ,
-            'asignacion': ['ASIGNACION', '_ASIGNACION_CONST', 'punto_coma'] ,
-            'int': ['ASIGNACION', '_ASIGNACION_CONST', 'punto_coma'] ,
-            'float': ['ASIGNACION', '_ASIGNACION_CONST', 'punto_coma'] ,
-            'char': ['ASIGNACION', '_ASIGNACION_CONST', 'punto_coma'] ,
-            'eof': ['ASIGNACION', '_ASIGNACION_CONST', 'punto_coma'] ,
+            'void': ['ASIGNACION_CONST', '_DECLARACION_CONST_CONT', 'punto_coma'] ,
+            'parentesis_de_inicio': ['parentesis_de_inicio', '#DcF', '#BFB', 'PARAMETROS', 'parentesis_de_cierre', 'FUNCION_COLA', '#EBl'] ,
+            'punto_coma': ['ASIGNACION_CONST', '_DECLARACION_CONST_CONT', 'punto_coma'] ,
+            'coma': ['ASIGNACION_CONST', '_DECLARACION_CONST_CONT', 'punto_coma'] ,
+            'asignacion': ['ASIGNACION_CONST', '_DECLARACION_CONST_CONT', 'punto_coma'] ,
+            'int': ['ASIGNACION_CONST', '_DECLARACION_CONST_CONT', 'punto_coma'] ,
+            'float': ['ASIGNACION_CONST', '_DECLARACION_CONST_CONT', 'punto_coma'] ,
+            'char': ['ASIGNACION_CONST', '_DECLARACION_CONST_CONT', 'punto_coma'] ,
+            'eof': ['ASIGNACION_CONST', '_DECLARACION_CONST_CONT', 'punto_coma'] ,
     },
 
-    'FUNCIONG_COLA' :
+    'FUNCION_COLA' :
     {
             'punto_coma': ['punto_coma'] ,
             'llave_de_inicio': ['llave_de_inicio', 'BLOQUE', 'llave_de_cierre'] ,
     },
 
-    '_ASIGNACION_CONST' :
+    '_DECLARACION_CONST_CONT' :
     {
             'punto_coma': [] ,
-            'coma': ['coma', 'ASIGNACION_CONST', '_ASIGNACION_CONST'] ,
+            'coma': ['coma', 'DECLARACION_CONST_CONT', '_DECLARACION_CONST_CONT'] ,
     },
 
-    'ASIGNACION_CONST' :
+    'DECLARACION_CONST_CONT' :
     {
-            'identificador': ['identificador', 'ASIGNACION'] ,
+            'identificador': ['identificador', '#Pop', '#DcI', 'ASIGNACION_CONST'] ,
     },
 
     'EXPRESION_CONST' :
@@ -62,12 +62,12 @@ tabla_global = {
             'constante_flotante': ['constante_flotante'] ,
     },
 
-    'ASIGNACION' :
+    'ASIGNACION_CONST' :
     {
             'void': [] ,
             'punto_coma': [] ,
             'coma': [] ,
-            'asignacion': ['asignacion', 'EXPRESION_CONSTANTE'] ,
+            'asignacion': ['asignacion', 'EXPRESION_CONST'] ,
             'int': [] ,
             'float': [] ,
             'char': [] ,
@@ -77,15 +77,15 @@ tabla_global = {
     'PARAMETROS' :
     {
             'parentesis_de_cierre': [] ,
-            'int': ['TIPO', 'identificador', '_PARAMETROS'] ,
-            'float': ['TIPO', 'identificador', '_PARAMETROS'] ,
-            'char': ['TIPO', 'identificador', '_PARAMETROS'] ,
+            'int': ['TIPO', '#DcT', 'identificador', '#DcI','#RgP', '#Pop', '#Pop', '_PARAMETROS'] ,
+            'float': ['TIPO', '#DcT', 'identificador', '#DcI','#RgP', '#Pop', '#Pop', '_PARAMETROS'] ,
+            'char': ['TIPO', '#DcT', 'identificador', '#DcI','#RgP', '#Pop', '#Pop', '_PARAMETROS'] ,
     },
 
     '_PARAMETROS' :
     {
             'parentesis_de_cierre': [] ,
-            'coma': ['coma', 'TIPO', 'identificador', '_PARAMETROS'] ,
+            'coma': ['coma', 'TIPO', '#DcT', 'identificador', '#DcI','#RgP', '#Pop', '#Pop', '_PARAMETROS'] ,
     },
 
     'TIPO' :
@@ -100,22 +100,22 @@ tabla_global = {
 # _GLOBAL -> GLOBAL _GLOBAL
 # _GLOBAL -> ''
 
-# GLOBAL -> TIPO identificador DECLARACION_GLBL
-# GLOBAL -> void identificador parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCIONG_COLA
-# DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma
-# DECLARACION_GLBL -> parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCIONG_COLA 
-# FUNCIONG_COLA -> punto_coma
-# FUNCIONG_COLA -> llave_de_inicio BLOQUE llave_de_cierre
+# GLOBAL -> TIPO identificador DECLARACION_CONST
+# GLOBAL -> void identificador parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA
+# DECLARACION_CONST -> ASIGNACION_CONST _DECLARACION_CONST_CONT punto_coma
+# DECLARACION_CONST -> parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA 
+# FUNCION_COLA -> punto_coma
+# FUNCION_COLA -> llave_de_inicio BLOQUE llave_de_cierre
 
-# _ASIGNACION_CONST -> coma ASIGNACION_CONST _ASIGNACION_CONST
-# _ASIGNACION_CONST -> ''
-# ASIGNACION_CONST -> identificador ASIGNACION
+# _DECLARACION_CONST_CONT -> coma DECLARACION_CONST_CONT _DECLARACION_CONST_CONT
+# _DECLARACION_CONST_CONT -> ''
+# DECLARACION_CONST_CONT -> identificador ASIGNACION_CONST
 # EXPRESION_CONST -> constante_entera
 # EXPRESION_CONST -> constante_character
 # EXPRESION_CONST -> constante_flotante
 
-# ASIGNACION -> asignacion EXPRESION_CONSTANTE
-# ASIGNACION -> ''
+# ASIGNACION_CONST -> asignacion EXPRESION_CONST
+# ASIGNACION_CONST -> ''
 
 # PARAMETROS -> TIPO identificador _PARAMETROS
 # PARAMETROS -> ''

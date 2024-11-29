@@ -6,17 +6,17 @@ tabla_inst = {
     'INSTRUCCION' :
     {
             'identificador': ['identificador', 'EXPRESION', 'punto_coma'] ,
-            'void': ['void', 'identificador', 'parentesis_de_inicio', 'PARAMETROS', 'parentesis_de_cierre', 'FUNCION_COLA'] ,
-            'int': ['TIPO', 'identificador', 'DECLARACION'] ,
-            'float': ['TIPO', 'identificador', 'DECLARACION'] ,
-            'char': ['TIPO', 'identificador', 'DECLARACION'] ,
+            'void': ['void', '#DcT', 'identificador', '#DcI', '#BFB', 'parentesis_de_inicio', 'PARAMETROS', 'parentesis_de_cierre', 'FUNCION_COLA', '#EBl', '#Pop', '#Pop'] ,
+            'int': ['TIPO', '#DcT', 'identificador', '#DcI', 'DECLARACION', '#Pop', '#Pop'] ,
+            'float': ['TIPO', '#DcT', 'identificador', '#DcI', 'DECLARACION', '#Pop', '#Pop'] ,
+            'char': ['TIPO', '#DcT', 'identificador', '#DcI', 'DECLARACION', '#Pop', '#Pop'] ,
             'return': ['RETORNO', 'punto_coma'] ,
     },
 
     'DECLARACION' :
     {
             'punto_coma': ['ASIGNACION', '_DECLARACION_CONT', 'punto_coma'] ,
-            'parentesis_de_inicio': ['parentesis_de_inicio', 'PARAMETROS', 'parentesis_de_cierre', 'FUNCION_COLA'] ,
+            'parentesis_de_inicio': [ 'parentesis_de_inicio', '#DcF', '#BFB','PARAMETROS', 'parentesis_de_cierre', 'FUNCION_COLA', '#EBl'] ,
             'coma': ['ASIGNACION', '_DECLARACION_CONT', 'punto_coma'] ,
             'asignacion': ['ASIGNACION', '_DECLARACION_CONT', 'punto_coma'] ,
             'eof': ['ASIGNACION', '_DECLARACION_CONT', 'punto_coma'] ,
@@ -25,7 +25,7 @@ tabla_inst = {
     'FUNCION_COLA' :
     {
             'punto_coma': ['punto_coma'] ,
-            'llave_de_inicio': ['llave_de_inicio', '_BLOQUE', 'llave_de_cierre'] ,
+            'llave_de_inicio': ['llave_de_inicio', 'BLOQUE', 'llave_de_cierre'] ,
     },
 
     '_DECLARACION_CONT' :
@@ -36,7 +36,7 @@ tabla_inst = {
 
     'DECLARACION_CONT' :
     {
-            'identificador': ['identificador', 'ASIGNACION'] ,
+            'identificador': ['identificador', '#Pop', '#DcI', 'ASIGNACION'] ,
     },
 
     'ASIGNACION' :
@@ -50,15 +50,15 @@ tabla_inst = {
     'PARAMETROS' :
     {
             'parentesis_de_cierre': [] ,
-            'int': ['TIPO', 'identificador', '_PARAMETROS'] ,
-            'float': ['TIPO', 'identificador', '_PARAMETROS'] ,
-            'char': ['TIPO', 'identificador', '_PARAMETROS'] ,
+            'int': ['TIPO', '#DcT', 'identificador', '#DcI','#RgP', '#Pop', '#Pop', '_PARAMETROS'] ,
+            'float': ['TIPO', '#DcT', 'identificador', '#DcI','#RgP', '#Pop', '#Pop', '_PARAMETROS'] ,
+            'char': ['TIPO', '#DcT', 'identificador', '#DcI','#RgP', '#Pop', '#Pop', '_PARAMETROS'] ,
     },
 
     '_PARAMETROS' :
     {
             'parentesis_de_cierre': [] ,
-            'coma': ['coma', 'TIPO', 'identificador', '_PARAMETROS'] ,
+            'coma': ['coma', 'TIPO', '#DcT', 'identificador', '#DcI','#RgP', '#Pop', '#Pop', '_PARAMETROS'] ,
     },
 
     'TIPO' :
@@ -98,19 +98,15 @@ tabla_inst = {
     },
 }
 
-# S -> INSTRUCCION _INSTRUCCION
-# _INSTRUCCION -> INSTRUCCION _INSTRUCCION
-# _INSTRUCCION -> ''
-
 # INSTRUCCION -> identificador EXPRESION punto_coma
 # INSTRUCCION -> RETORNO punto_coma
 
 # INSTRUCCION -> TIPO identificador DECLARACION
-# INSTRUCCION -> void identificador parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA
-# DECLARACION -> ASIGNACION _DECLARACION_CONT punto_coma
-# DECLARACION -> parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA 
-# FUNCION_COLA -> punto_coma
-# FUNCION_COLA -> llave_de_inicio _BLOQUE llave_de_cierre
+# INSTRUCCION -> void identificador parentesis_de_inicio #DecF PARAMETROS parentesis_de_cierre FUNCION_COLA
+# DECLARACION -> ASIGNACION #DecVI _DECLARACION_CONT #DecVC punto_coma
+# DECLARACION -> parentesis_de_inicio #DecF PARAMETROS parentesis_de_cierre FUNCION_COLA 
+# FUNCION_COLA -> punto_coma #ClsScp
+# FUNCION_COLA -> llave_de_inicio BLOQUE llave_de_cierre #ClsScp
 
 # _DECLARACION_CONT -> coma DECLARACION_CONT _DECLARACION_CONT
 # _DECLARACION_CONT -> ''

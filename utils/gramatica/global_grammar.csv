@@ -1,13 +1,27 @@
-Nonterminal,mas,menos,multiplicacion,division,modulo,constante_entera,constante_flotante,identificador,parentesis_de_inicio,parentesis_de_cierre,operador_y,operador_o Expr,eof
-Expr,,,,,,Expr -> Term Expr_P,Expr -> Term Expr_P,Expr -> Term Expr_P,Expr -> Term Expr_P,,,,
-Expr_P,Expr_P -> PlusExpr_P,Expr_P -> MinusExpr_P,,,,,,,,Expr_P -> '',Expr_P -> LogicalExpr,Expr_P -> LogicalExpr,Expr_P -> ''
-PlusExpr_P,PlusExpr_P -> mas Term Expr_P,,,,,,,,,,,,
-MinusExpr_P,,MinusExpr_P -> menos Term Expr_P,,,,,,,,,,,
-Term,,,,,,Term -> Factor Term_P,Term -> Factor Term_P,Term -> Factor Term_P,Term -> Factor Term_P,,,,
-Term_P,Term_P -> '',Term_P -> '',Term_P -> MultTerm_P,Term_P -> DivTerm_P,Term_P -> ModTerm_P,,,,,Term_P -> '',Term_P -> '',Term_P -> '',Term_P -> ''
-MultTerm_P,,,MultTerm_P -> multiplicacion Factor Term_P,,,,,,,,,,
-DivTerm_P,,,,DivTerm_P -> division Factor Term_P,,,,,,,,,
-ModTerm_P,,,,,ModTerm_P -> modulo Factor Term_P,,,,,,,,
-Factor,,,,,,Factor -> constante_entera,Factor -> constante_flotante,Factor -> identificador,Factor -> OpenExpr,,,,
-OpenExpr,,,,,,,,,OpenExpr -> parentesis_de_inicio Expr parentesis_de_cierre,,,,
-LogicalExpr,,,,,,,,,,,LogicalExpr -> operador_y Expr,LogicalExpr -> operador_o Expr,
+Nonterminal,identificador,void,parentesis_de_inicio,parentesis_de_cierre,punto_coma,llave_de_inicio,llave_de_cierre,coma,constante_entera,constante_character,constante_flotante,asignacion,int,float,char,b,$
+,,,,,,,,,,,,,,,,,
+PROGRAMA,,PROGRAMA -> _GLOBAL,,,,,,,,,,,PROGRAMA -> _GLOBAL,PROGRAMA -> _GLOBAL,PROGRAMA -> _GLOBAL,,PROGRAMA -> _GLOBAL
+,,,,,,,,,,,,,,,,,
+_GLOBAL,,_GLOBAL -> GLOBAL _GLOBAL,,,,,,,,,,,_GLOBAL -> GLOBAL _GLOBAL,_GLOBAL -> GLOBAL _GLOBAL,_GLOBAL -> GLOBAL _GLOBAL,,_GLOBAL -> ''
+,,,,,,,,,,,,,,,,,
+GLOBAL,,GLOBAL -> void identificador parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA,,,,,,,,,,,GLOBAL -> TIPO identificador DECLARACION_CONST,GLOBAL -> TIPO identificador DECLARACION_CONST,GLOBAL -> TIPO identificador DECLARACION_CONST,,
+,,,,,,,,,,,,,,,,,
+DECLARACION_CONST,,DECLARACION_CONST -> ASIGNACION_CONST _DECLARACION_CONST_CONT punto_coma,DECLARACION_CONST -> parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA,,DECLARACION_CONST -> ASIGNACION_CONST _DECLARACION_CONST_CONT punto_coma,,,DECLARACION_CONST -> ASIGNACION_CONST _DECLARACION_CONST_CONT punto_coma,,,,DECLARACION_CONST -> ASIGNACION_CONST _DECLARACION_CONST_CONT punto_coma,DECLARACION_CONST -> ASIGNACION_CONST _DECLARACION_CONST_CONT punto_coma,DECLARACION_CONST -> ASIGNACION_CONST _DECLARACION_CONST_CONT punto_coma,DECLARACION_CONST -> ASIGNACION_CONST _DECLARACION_CONST_CONT punto_coma,,DECLARACION_CONST -> ASIGNACION_CONST _DECLARACION_CONST_CONT punto_coma
+,,,,,,,,,,,,,,,,,
+FUNCION_COLA,,,,,FUNCION_COLA -> punto_coma,FUNCION_COLA -> llave_de_inicio BLOQUE llave_de_cierre,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+_DECLARACION_CONST_CONT,,,,,_DECLARACION_CONST_CONT -> '',,,_DECLARACION_CONST_CONT -> coma DECLARACION_CONST_CONT _DECLARACION_CONST_CONT,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+DECLARACION_CONST_CONT,DECLARACION_CONST_CONT -> identificador ASIGNACION_CONST,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+EXPRESION_CONST,,,,,,,,,EXPRESION_CONST -> constante_entera,EXPRESION_CONST -> constante_character,EXPRESION_CONST -> constante_flotante,,,,,,
+,,,,,,,,,,,,,,,,,
+ASIGNACION_CONST,,ASIGNACION_CONST -> '',,,ASIGNACION_CONST -> '',,,ASIGNACION_CONST -> '',,,,ASIGNACION_CONST -> asignacion EXPRESION_CONST,ASIGNACION_CONST -> '',ASIGNACION_CONST -> '',ASIGNACION_CONST -> '',,ASIGNACION_CONST -> ''
+,,,,,,,,,,,,,,,,,
+PARAMETROS,,,,PARAMETROS -> '',,,,,,,,,PARAMETROS -> TIPO identificador _PARAMETROS,PARAMETROS -> TIPO identificador _PARAMETROS,PARAMETROS -> TIPO identificador _PARAMETROS,,
+,,,,,,,,,,,,,,,,,
+_PARAMETROS,,,,_PARAMETROS -> '',,,,_PARAMETROS -> coma TIPO identificador _PARAMETROS,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+TIPO,,,,,,,,,,,,,TIPO -> int,TIPO -> float,TIPO -> char,,
+,,,,,,,,,,,,,,,,,
+BLOQUE,,,,,,,,,,,,,,,,BLOQUE -> b,

@@ -2,15 +2,16 @@
 
 
 class Identifier:
-    def __init__(self,name,type,ivalue=None):
+    def __init__(self,name,type,ivalue=None,parameters=None):
         self.name = name
         self.type = type
         self.ivalue = ivalue
+        self.parameters = parameters
         self.usage_count = 0  
 
     def __str__(self):
-        return "ID {:16} Tipo: {:16} Inicial: {:32}".format(
-                str(self.name), str(self.type), str(self.ivalue))
+        return "ID {:16} Tipo: {:16} Inicial: {:16} Parametros:{:32}".format(
+                str(self.name), str(self.type), str(self.ivalue), str(self.parameters))
 
 ## Estructura de tabla de simbolos. Una tabla se crea por ambito y se enlazan.
 ## Almacena simbolos en un hash table y hace referencias al ambito superior e inferiores.
@@ -20,6 +21,7 @@ class SymbolTable:
         self.parent = parent ##Ambito superio
         self.symbols = {} ##Simbolos en el ambito actual
         self.children = {} ##Sub-ambitos
+        self.block_counter = 0
 
     ## REvisa si la variable no existe. De ser el caso, la crea y almacena
     def addEntry(self,name,type,ivalue=None):
