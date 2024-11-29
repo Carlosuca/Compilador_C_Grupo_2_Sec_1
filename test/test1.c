@@ -8,18 +8,22 @@ void juarez_dev();
 
 int main() {
 
-    char c ;
+    a = 15 + 25 ;
     
-    if(a) {
+    if(a == z) {
         int x = a;
     }
 
-    for (int i = a; i; i){
-        
+    for (int i = a; i == 365; i+1){
+        print(i);
     }
 
-    int a = 5;
-    float b = 10;
+    // int a = 5;
+    // float b = 10;
+
+    isActive = true;
+    
     char c = 'x';
+
     return 0;
 }

@@ -81,17 +81,6 @@ def buscar_produccion(no_terminal, terminal):
             return tabla_parser[no_terminal]['*']
         return None
     return tabla_parser[no_terminal][terminal]
-    if no_terminal in no_terminales_ini: 
-        return tabla_program[no_terminal][terminal]
-
-    if no_terminal in no_terminales_bloque: 
-        return tabla_bloque[no_terminal][terminal]
-
-    if no_terminal in no_terminales_instruccion: 
-        return tabla_inst[no_terminal][terminal]
-
-    if no_terminal in no_terminales_exp: 
-        return tabla_exp[no_terminal][terminal]
 
 def agregar_produccion(pila, produccion):
     for i in reversed(produccion):

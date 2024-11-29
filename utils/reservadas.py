@@ -22,8 +22,8 @@ reservadas = {
     'printf': 'identificador',
     
     #Operadores boleanos 
-    'true': 'true',
-    'false': 'false',
+    'true': 'constante_boleano',
+    'false': 'constante_boleano',
 }
 
 

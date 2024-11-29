@@ -1,6 +1,6 @@
 Nonterminal,identificador,punto_coma,void,parentesis_de_inicio,parentesis_de_cierre,llave_de_inicio,_BLOQUE,llave_de_cierre,coma,asignacion,int,float,char,return,e,$
 ,,,,,,,,,,,,,,,,
-INSTRUCCION,INSTRUCCION -> identificador OPERACION punto_coma,,INSTRUCCION -> void identificador parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA,,,,,,,,INSTRUCCION -> TIPO identificador DECLARACION,INSTRUCCION -> TIPO identificador DECLARACION,INSTRUCCION -> TIPO identificador DECLARACION,INSTRUCCION -> RETORNO punto_coma,,
+INSTRUCCION,INSTRUCCION -> identificador EXPRESION punto_coma,,INSTRUCCION -> void identificador parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA,,,,,,,,INSTRUCCION -> TIPO identificador DECLARACION,INSTRUCCION -> TIPO identificador DECLARACION,INSTRUCCION -> TIPO identificador DECLARACION,INSTRUCCION -> RETORNO punto_coma,,
 ,,,,,,,,,,,,,,,,
 DECLARACION,,DECLARACION -> ASIGNACION _DECLARACION_CONT punto_coma,,DECLARACION -> parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA,,,,,DECLARACION -> ASIGNACION _DECLARACION_CONT punto_coma,DECLARACION -> ASIGNACION _DECLARACION_CONT punto_coma,,,,,,DECLARACION -> ASIGNACION _DECLARACION_CONT punto_coma
 ,,,,,,,,,,,,,,,,
@@ -20,7 +20,7 @@ TIPO,,,,,,,,,,,TIPO -> int,TIPO -> float,TIPO -> char,,,
 ,,,,,,,,,,,,,,,,
 RETORNO,,,,,,,,,,,,,,RETORNO -> return EXPRESION,,
 ,,,,,,,,,,,,,,,,
-OPERACION,,OPERACION -> ASIGNACION,,OPERACION -> LLAMAR_FUNCION,,,,,,OPERACION -> ASIGNACION,,,,,,
+EXPRESION,,EXPRESION -> ASIGNACION,,EXPRESION -> LLAMAR_FUNCION,,,,,,EXPRESION -> ASIGNACION,,,,,,
 ,,,,,,,,,,,,,,,,
 LLAMAR_FUNCION,,,,LLAMAR_FUNCION -> parentesis_de_inicio ARGUMENT parentesis_de_cierre,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,

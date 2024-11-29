@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # Cargar el archivo CSV
-file_path = 'utils/gramatica/block_grammar.csv'
+file_path = 'utils/gramatica/global_grammar.csv'
 
 # Inspeccionar el contenido crudo para entender su estructura
 with open(file_path, 'r') as file:

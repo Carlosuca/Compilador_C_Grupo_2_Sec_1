@@ -36,6 +36,7 @@ tokens = [
     'constante_entera',    # Números enteros
     'constante_flotante',  # Números de punto flotante
     'constante_caracter',  # Caracteres individuales
+    'constante_boleano',  # Caracteres individuales
 
     # Tipos de datos
     'int',                # Tipo entero
