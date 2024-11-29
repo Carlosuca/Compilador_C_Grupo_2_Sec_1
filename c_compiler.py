@@ -19,6 +19,7 @@ if __name__ == '__main__':
     print("\n")
     tabla = construir_tabla(arbol)
     print(tabla)
+    # print(arbol)
 
     # analisis_semantico(tabla, arbol)
 

@@ -8,7 +8,7 @@ void juarez_dev();
 
 int main() {
 
-    a = 15 + 25 ;
+    b = 15 + 25 ;
     
     if(a == z) {
         int x = a;
@@ -16,12 +16,13 @@ int main() {
 
     for (int i = a; i == 365; i+1){
         print(i);
+        x = 25;
     }
+    isActive = true;
 
     // int a = 5;
     // float b = 10;
 
-    isActive = true;
     
     char c = 'x';
 
