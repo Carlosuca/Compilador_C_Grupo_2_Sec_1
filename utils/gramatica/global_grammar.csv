@@ -1,27 +1,27 @@
-Nonterminal,identificador,void,punto_coma,parentesis_de_inicio,parentesis_de_cierre,llave_de_inicio,llave_de_cierre,coma,constante_entera,constante_character,constante_flotante,asignacion,EXPRESION_CONSTANTE,int,float,char,b,$
+Nonterminal,identificador,void,parentesis_de_inicio,parentesis_de_cierre,punto_coma,llave_de_inicio,llave_de_cierre,coma,constante_entera,constante_character,constante_flotante,asignacion,EXPRESION_CONSTANTE,int,float,char,b,$
 ,,,,,,,,,,,,,,,,,,
 PROGRAMA,,PROGRAMA -> _GLOBAL,,,,,,,,,,,,PROGRAMA -> _GLOBAL,PROGRAMA -> _GLOBAL,PROGRAMA -> _GLOBAL,,PROGRAMA -> _GLOBAL
 ,,,,,,,,,,,,,,,,,,
 _GLOBAL,,_GLOBAL -> GLOBAL _GLOBAL,,,,,,,,,,,,_GLOBAL -> GLOBAL _GLOBAL,_GLOBAL -> GLOBAL _GLOBAL,_GLOBAL -> GLOBAL _GLOBAL,,_GLOBAL -> ''
 ,,,,,,,,,,,,,,,,,,
-GLOBAL,,GLOBAL -> void identificador PARAMETROS FUNCIONG_COLA,,,,,,,,,,,,GLOBAL -> TYPO identificador DECLARACION_GLBL,GLOBAL -> TYPO identificador DECLARACION_GLBL,GLOBAL -> TYPO identificador DECLARACION_GLBL,,
+GLOBAL,,GLOBAL -> void identificador parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCIONG_COLA,,,,,,,,,,,,GLOBAL -> TYPO identificador DECLARACION_GLBL,GLOBAL -> TYPO identificador DECLARACION_GLBL,GLOBAL -> TYPO identificador DECLARACION_GLBL,,
 ,,,,,,,,,,,,,,,,,,
-DECLARACION_GLBL,,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,DECLARACION_GLBL -> parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCIONG_COLA,,,,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,,,,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma
+DECLARACION_GLBL,,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,DECLARACION_GLBL -> parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCIONG_COLA,,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,,,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,,,,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma,,DECLARACION_GLBL -> ASIGNACION _ASIGNACION_CONST punto_coma
 ,,,,,,,,,,,,,,,,,,
-FUNCIONG_COLA,,,FUNCIONG_COLA -> punto_coma,,,FUNCIONG_COLA -> llave_de_inicio _BLOQUE llave_de_cierre,,,,,,,,,,,,
+FUNCIONG_COLA,,,,,FUNCIONG_COLA -> punto_coma,FUNCIONG_COLA -> llave_de_inicio BLOQUE llave_de_cierre,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,
-_ASIGNACION_CONST,,,_ASIGNACION_CONST -> '',,,,,_ASIGNACION_CONST -> coma ASIGNACION_CONST _ASIGNACION_CONST,,,,,,,,,,
+_ASIGNACION_CONST,,,,,_ASIGNACION_CONST -> '',,,_ASIGNACION_CONST -> coma ASIGNACION_CONST _ASIGNACION_CONST,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,
 ASIGNACION_CONST,ASIGNACION_CONST -> identificador ASIGNACION,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,
 EXPRESION_CONST,,,,,,,,,EXPRESION_CONST -> constante_entera,EXPRESION_CONST -> constante_character,EXPRESION_CONST -> constante_flotante,,,,,,,
 ,,,,,,,,,,,,,,,,,,
-ASIGNACION,,ASIGNACION -> '',ASIGNACION -> '',,,,,ASIGNACION -> '',,,,ASIGNACION -> asignacion EXPRESION_CONSTANTE,,ASIGNACION -> '',ASIGNACION -> '',ASIGNACION -> '',,ASIGNACION -> ''
+ASIGNACION,,ASIGNACION -> '',,,ASIGNACION -> '',,,ASIGNACION -> '',,,,ASIGNACION -> asignacion EXPRESION_CONSTANTE,,ASIGNACION -> '',ASIGNACION -> '',ASIGNACION -> '',,ASIGNACION -> ''
 ,,,,,,,,,,,,,,,,,,
-PARAMETROS,,,PARAMETROS -> '',,PARAMETROS -> '',PARAMETROS -> '',,,,,,,,PARAMETROS -> TYPO identificador _PARAMETROS,PARAMETROS -> TYPO identificador _PARAMETROS,PARAMETROS -> TYPO identificador _PARAMETROS,,
+PARAMETROS,,,,PARAMETROS -> '',,,,,,,,,,PARAMETROS -> TYPO identificador _PARAMETROS,PARAMETROS -> TYPO identificador _PARAMETROS,PARAMETROS -> TYPO identificador _PARAMETROS,,
 ,,,,,,,,,,,,,,,,,,
-_PARAMETROS,,,_PARAMETROS -> '',,_PARAMETROS -> '',_PARAMETROS -> '',,_PARAMETROS -> coma TYPO identificador _PARAMETROS,,,,,,,,,,
+_PARAMETROS,,,,_PARAMETROS -> '',,,,_PARAMETROS -> coma TYPO identificador _PARAMETROS,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,
 TYPO,,,,,,,,,,,,,,TYPO -> int,TYPO -> float,TYPO -> char,,
 ,,,,,,,,,,,,,,,,,,
-_BLOQUE,,,,,,,,,,,,,,,,,_BLOQUE -> b,
+BLOQUE,,,,,,,,,,,,,,,,,BLOQUE -> b,

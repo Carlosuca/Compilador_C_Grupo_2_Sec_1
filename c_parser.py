@@ -63,8 +63,7 @@ def construir_arbol(lista_tokens):
         agregar_produccion(pila, produccion)
 
 
-        if produccion != ['e']:
-            agregar_produccion_arbol(pila_arbol, nodos)
+        agregar_produccion(pila_arbol, nodos)
         top = pila[-1]
     
        
@@ -100,7 +99,7 @@ def agregar_produccion(pila, produccion):
             pila.append(i)
 
         
-def imprimir_tabla(tree):
+def imprimir_tabla_old(tree):
     # Tabla de símbolos
     symbol_table = {}
 

@@ -7,9 +7,9 @@ tabla_inst = {
     {
             'identificador': ['identificador', 'OPERACION', 'punto_coma'] ,
             'void': ['void', 'identificador', 'parentesis_de_inicio', 'PARAMETROS', 'parentesis_de_cierre', 'FUNCION_COLA'] ,
-            'int': ['TYPO', 'identificador', 'DECLARACION'] ,
-            'float': ['TYPO', 'identificador', 'DECLARACION'] ,
-            'char': ['TYPO', 'identificador', 'DECLARACION'] ,
+            'int': ['TIPO', 'identificador', 'DECLARACION'] ,
+            'float': ['TIPO', 'identificador', 'DECLARACION'] ,
+            'char': ['TIPO', 'identificador', 'DECLARACION'] ,
             'return': ['RETORNO', 'punto_coma'] ,
     },
 
@@ -50,18 +50,18 @@ tabla_inst = {
     'PARAMETROS' :
     {
             'parentesis_de_cierre': [] ,
-            'int': ['TYPO', 'identificador', '_PARAMETROS'] ,
-            'float': ['TYPO', 'identificador', '_PARAMETROS'] ,
-            'char': ['TYPO', 'identificador', '_PARAMETROS'] ,
+            'int': ['TIPO', 'identificador', '_PARAMETROS'] ,
+            'float': ['TIPO', 'identificador', '_PARAMETROS'] ,
+            'char': ['TIPO', 'identificador', '_PARAMETROS'] ,
     },
 
     '_PARAMETROS' :
     {
             'parentesis_de_cierre': [] ,
-            'coma': ['coma', 'TYPO', 'identificador', '_PARAMETROS'] ,
+            'coma': ['coma', 'TIPO', 'identificador', '_PARAMETROS'] ,
     },
 
-    'TYPO' :
+    'TIPO' :
     {
             'int': ['int'] ,
             'float': ['float'] ,
@@ -105,7 +105,7 @@ tabla_inst = {
 # INSTRUCCION -> identificador OPERACION punto_coma
 # INSTRUCCION -> RETORNO punto_coma
 
-# INSTRUCCION -> TYPO identificador DECLARACION
+# INSTRUCCION -> TIPO identificador DECLARACION
 # INSTRUCCION -> void identificador parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA
 # DECLARACION -> ASIGNACION _DECLARACION_CONT punto_coma
 # DECLARACION -> parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA 
@@ -119,14 +119,14 @@ tabla_inst = {
 # ASIGNACION -> asignacion EXPRESION
 # ASIGNACION -> ''
 
-# PARAMETROS -> TYPO identificador _PARAMETROS
+# PARAMETROS -> TIPO identificador _PARAMETROS
 # PARAMETROS -> ''
-# _PARAMETROS -> coma TYPO identificador _PARAMETROS
+# _PARAMETROS -> coma TIPO identificador _PARAMETROS
 # _PARAMETROS -> ''
 
-# TYPO -> int
-# TYPO -> float
-# TYPO -> char
+# TIPO -> int
+# TIPO -> float
+# TIPO -> char
 
 # RETORNO -> return EXPRESION
 

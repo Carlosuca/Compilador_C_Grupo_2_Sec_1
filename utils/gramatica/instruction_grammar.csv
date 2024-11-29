@@ -1,6 +1,6 @@
 Nonterminal,identificador,punto_coma,void,parentesis_de_inicio,parentesis_de_cierre,llave_de_inicio,_BLOQUE,llave_de_cierre,coma,asignacion,int,float,char,return,e,$
 ,,,,,,,,,,,,,,,,
-INSTRUCCION,INSTRUCCION -> identificador OPERACION punto_coma,,INSTRUCCION -> void identificador parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA,,,,,,,,INSTRUCCION -> TYPO identificador DECLARACION,INSTRUCCION -> TYPO identificador DECLARACION,INSTRUCCION -> TYPO identificador DECLARACION,INSTRUCCION -> RETORNO punto_coma,,
+INSTRUCCION,INSTRUCCION -> identificador OPERACION punto_coma,,INSTRUCCION -> void identificador parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA,,,,,,,,INSTRUCCION -> TIPO identificador DECLARACION,INSTRUCCION -> TIPO identificador DECLARACION,INSTRUCCION -> TIPO identificador DECLARACION,INSTRUCCION -> RETORNO punto_coma,,
 ,,,,,,,,,,,,,,,,
 DECLARACION,,DECLARACION -> ASIGNACION _DECLARACION_CONT punto_coma,,DECLARACION -> parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA,,,,,DECLARACION -> ASIGNACION _DECLARACION_CONT punto_coma,DECLARACION -> ASIGNACION _DECLARACION_CONT punto_coma,,,,,,DECLARACION -> ASIGNACION _DECLARACION_CONT punto_coma
 ,,,,,,,,,,,,,,,,
@@ -12,11 +12,11 @@ DECLARACION_CONT,DECLARACION_CONT -> identificador ASIGNACION,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,
 ASIGNACION,,ASIGNACION -> '',,,,,,,ASIGNACION -> '',ASIGNACION -> asignacion EXPRESION,,,,,,ASIGNACION -> ''
 ,,,,,,,,,,,,,,,,
-PARAMETROS,,,,,PARAMETROS -> '',,,,,,PARAMETROS -> TYPO identificador _PARAMETROS,PARAMETROS -> TYPO identificador _PARAMETROS,PARAMETROS -> TYPO identificador _PARAMETROS,,,
+PARAMETROS,,,,,PARAMETROS -> '',,,,,,PARAMETROS -> TIPO identificador _PARAMETROS,PARAMETROS -> TIPO identificador _PARAMETROS,PARAMETROS -> TIPO identificador _PARAMETROS,,,
 ,,,,,,,,,,,,,,,,
-_PARAMETROS,,,,,_PARAMETROS -> '',,,,_PARAMETROS -> coma TYPO identificador _PARAMETROS,,,,,,,
+_PARAMETROS,,,,,_PARAMETROS -> '',,,,_PARAMETROS -> coma TIPO identificador _PARAMETROS,,,,,,,
 ,,,,,,,,,,,,,,,,
-TYPO,,,,,,,,,,,TYPO -> int,TYPO -> float,TYPO -> char,,,
+TIPO,,,,,,,,,,,TIPO -> int,TIPO -> float,TIPO -> char,,,
 ,,,,,,,,,,,,,,,,
 RETORNO,,,,,,,,,,,,,,RETORNO -> return EXPRESION,,
 ,,,,,,,,,,,,,,,,

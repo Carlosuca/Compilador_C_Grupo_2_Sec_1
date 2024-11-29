@@ -1,6 +1,6 @@
 int a = 5;
 
-float a;
+float z;
 
 int juarez();
 

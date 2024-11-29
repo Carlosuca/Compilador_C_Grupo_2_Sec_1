@@ -1,60 +1,66 @@
 tabla_bloque = {
-    'BLOQUE' :
-    {
-            'condicion_if': ['INSTRUCCION_B', 'BLOQUE'] ,
-            'bucle_while': ['INSTRUCCION_B', 'BLOQUE'] ,
-            'bucle_do': ['INSTRUCCION_B', 'BLOQUE'] ,
-            'bucle_for': ['INSTRUCCION_B', 'BLOQUE'] ,
-            '*': ['INSTRUCCION_B', 'BLOQUE'] ,
-            'llave_de_inicio': ['INSTRUCCION_B', 'BLOQUE'] ,
-            'llave_de_cierre': [] ,
-            'eof': [] ,
-    },
+        'BLOQUE' :
+        {
+                'condicion_if': ['INSTRUCCION_B', 'BLOQUE'] ,
+                'bucle_while': ['INSTRUCCION_B', 'BLOQUE'] ,
+                'bucle_do': ['INSTRUCCION_B', 'BLOQUE'] ,
+                'bucle_for': ['INSTRUCCION_B', 'BLOQUE'] ,
+                '*': ['INSTRUCCION_B', 'BLOQUE'] ,
+                'llave_de_inicio': ['INSTRUCCION_B', 'BLOQUE'] ,
+                'llave_de_cierre': [] ,
+                'eof': [] ,
+        },
 
-    'INSTRUCCION_B' :
-    {
-            'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C', 'BLOQUE_ELSE'] ,
-            'bucle_while': ['bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C'] ,
-            'bucle_do': ['bucle_do', 'INSTRUCCION_C', 'bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'punto_coma'] ,
-            'bucle_for': ['bucle_for', 'parentesis_de_inicio', 'INSTRUCCION', 'identificador', 'OPERACION', 'punto_coma', 'identificador', 'OPERACION', 'parentesis_de_cierre', 'INSTRUCCION_C'] ,
-            '*': ['INSTRUCCION'] ,
-            'llave_de_inicio': ['INSTRUCCION'] ,
-    },
+        'INSTRUCCION_B' :
+        {
+                'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C', 'BLOQUE_ELSE'] ,
+                'bucle_while': ['bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C'] ,
+                'bucle_do': ['bucle_do', 'INSTRUCCION_C', 'bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'punto_coma'] ,
+                'bucle_for': ['bucle_for', 'parentesis_de_inicio', 'INSTRUCCION', 'identificador', 'OPERACION', 'punto_coma', 'identificador', 'OPERACION', 'parentesis_de_cierre', 'INSTRUCCION_C'] ,
+                '*': ['INSTRUCCION'] ,
+                'llave_de_inicio': ['INSTRUCCION'] ,
+        },
 
-    'INSTRUCCION_C' :
-    {
-            'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C', 'condicion_else', 'INSTRUCCION_C'] ,
-            'bucle_while': ['bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C'] ,
-            'bucle_do': ['bucle_do', 'INSTRUCCION_C', 'bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'punto_coma'] ,
-            'bucle_for': ['bucle_for', 'parentesis_de_inicio', 'INSTRUCCION', 'identificador', 'OPERACION', 'punto_coma', 'identificador', 'OPERACION', 'parentesis_de_cierre', 'INSTRUCCION_C'] , 
-            '*': ['INSTRUCCION'] ,
-            'llave_de_inicio': ['INSTRUCCION'] ,
-    },
+        'INSTRUCCION_C' :
+        {
+                'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C', 'condicion_else', 'INSTRUCCION_C'] ,
+                'bucle_while': ['bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C'] ,
+                'bucle_do': ['bucle_do', 'INSTRUCCION_C', 'bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'punto_coma'] ,
+                'bucle_for': ['bucle_for', 'parentesis_de_inicio', 'INSTRUCCION', 'identificador', 'OPERACION', 'punto_coma', 'identificador', 'OPERACION', 'parentesis_de_cierre', 'INSTRUCCION_C'] ,
+                '*': ['INSTRUCCION'] ,
+                'llave_de_inicio': ['INSTRUCCION'] ,
+        },
 
-    'BLOQUE_ELSE' :
-    {
-            'condicion_if': [] ,
-            'bucle_while': [] ,
-            'bucle_do': [] ,
-            'bucle_for': [] ,
-            'condicion_else': ['condicion_else', 'COLA_ELSE'] ,
-            '*': [] ,
-            'llave_de_inicio': [] ,
-            'llave_de_cierre': [] ,
-            'eof': [] ,
-    },
+        'BLOQUE_ELSE' :
+        {
+                'condicion_if': [] ,
+                'bucle_while': [] ,
+                'bucle_do': [] ,
+                'bucle_for': [] ,
+                'condicion_else': ['condicion_else', 'COLA_ELSE'] ,
+                '*': [] ,
+                'llave_de_inicio': [] ,
+                'llave_de_cierre': [] ,
+                'eof': [] ,
+        },
 
-    'COLA_ELSE' :
-    {
-            'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'COLA_ELSE'] ,
-            '*': ['INSTRUCCION'] ,
-            'llave_de_inicio': ['INSTRUCCION'] ,
-    },
+        'COLA_ELSE' :
+        {
+                'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'COLA_ELSE'] ,
+                '*': ['INSTRUCCION'] ,
+                'llave_de_inicio': ['INSTRUCCION'] ,
+        },
 
-    'INSTRUCCION' :
-    {
-            'llave_de_inicio': ['llave_de_inicio', 'BLOQUE', 'llave_de_cierre'] ,
-    },
+        'INSTRUCCION' :
+        {
+                'llave_de_inicio': ['llave_de_inicio', 'BLOQUE', 'llave_de_cierre'] ,
+        },
+
+        'OPERACION' :
+        {
+                'parentesis_de_cierre': [] ,
+                'punto_coma': [] ,
+        },
 }
 
 # BLOQUE -> INSTRUCCION_B BLOQUE
@@ -75,6 +81,8 @@ tabla_bloque = {
 # COLA_ELSE -> INSTRUCCION
 # INSTRUCCION -> i
 # INSTRUCCION -> llave_de_inicio BLOQUE llave_de_cierre
+# OPERACION -> o
+# OPERACION -> ''
 
 
 
