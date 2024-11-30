@@ -7,13 +7,14 @@ def DcT(pila_semantica, token, arbol, tabla_simbolos, lista_errores):
 def DcI(pila_semantica, token, arbol, tabla_simbolos, lista_errores):
     id_s = tabla_simbolos.is_declared(token.value,0)
     if id_s == True:
-        lista_errores.append("\n\nError: la variable " + token.value + 'ya esta declarada\nen la linea: ' + str(token.lineno) + ', posicion: ' + str(token.lexpos))
+        lista_errores.append("\n\nError: la variable " + token.value + ' ya esta declarada\nen la linea: ' + str(token.lineno) + ', posicion: ' + str(token.lexpos))
         return
     pila_semantica.append(token)
     tabla_simbolos.addEntry(pila_semantica[-1].value,pila_semantica[-2].value,str(pila_semantica[-1].lineno),None,None)
 
 def DcF(pila_semantica, token, arbol, tabla_simbolos, lista_errores):
     func = tabla_simbolos.symbols[pila_semantica[-1].value]
+    func.usage_count+=1
     func.type = "funcion " + pila_semantica[-2].value
     func.ivalue = "@" + pila_semantica[-1].value
     func.parameters = []
@@ -36,10 +37,11 @@ def RgP(pila_semantica, token, arbol, tabla_simbolos, lista_errores):
     func.parameters.append(pila_semantica[-2].value)
 
 def Ref(pila_semantica, token, arbol, tabla_simbolos, lista_errores):
-    id_s = tabla_simbolos.is_declared(token.value)
-    if id_s == False:
-        lista_errores.append("\n\nError: la variable " + token.value + 'no ha sido declarada\nen la linea: ' + str(token.lineno) + ', posicion: ' + str(token.lexpos))
+    id_s = tabla_simbolos.find_symbol(token.value)
+    if id_s is None:
+        lista_errores.append("\n\nError: la variable " + token.value + ' no ha sido declarada\nen la linea: ' + str(token.lineno) + ', posicion: ' + str(token.lexpos))
         return
+    id_s.usage_count +=1
 
 def Psh(pila_semantica, token, arbol, tabla_simbolos, lista_errores):
     pila_semantica.append(token)
@@ -141,7 +143,7 @@ def CmP(pila_semantica, token, arbol, tabla_simbolos, lista_errores):
         b = 'operando_integral'
     if a != b:
         pila_semantica.pop()
-        lista_errores.append("\n\nError: los parametros proporcionadoes no encajan con la declaracion de " + b.value + 'ya esta declarada\nen la linea: ' + str(b.lineno) + ', posicion: ' + str(b.lexpos))
+        lista_errores.append("\n\nError: los parametros proporcionadoes no encajan con la declaracion de " + b.value + ' ya esta declarada\nen la linea: ' + str(b.lineno) + ', posicion: ' + str(b.lexpos))
         return
     pila_semantica.pop()
 
@@ -174,12 +176,13 @@ def CmR(pila_semantica, token, arbol, tabla_simbolos, lista_errores):
         b = 'operando_integral'
     if a != b:
         print("RETORNO INVALIDO\n")
-        lista_errores.append("\n\nError: el valor de retorno no es el esperado por la funcion " + bb + 'ya esta declarada\nen la linea: ' + str(token.lineno) + ', posicion: ' + str(token.lexpos))
+        lista_errores.append("\n\nError: el valor de retorno no es el esperado por la funcion " + bb + ' ya esta declarada\nen la linea: ' + str(token.lineno) + ', posicion: ' + str(token.lexpos))
         return
 
 def DcC(pila_semantica, token, arbol, tabla_simbolos, lista_errores):
 
     tabla_simbolos.addEntry("const_" + str(tabla_simbolos.const_counter),operando_integral[token.type],token.lineno,token.value)
+    tabla_simbolos.symbols["const_" + str(tabla_simbolos.const_counter)].usage_count+=1
     tabla_simbolos.const_counter += 1
     pila_semantica.append('operando_integral')
     token.type = 'identificador'

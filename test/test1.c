@@ -16,7 +16,7 @@ void juarez_dev();
 
 int main() {
 
-    int b =;
+    int b = 4;
 
     int b = juarez;
 

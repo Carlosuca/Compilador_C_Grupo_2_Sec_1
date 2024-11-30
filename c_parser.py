@@ -29,6 +29,8 @@ def construir_arbol(lista_tokens):
     tabla_simbolos = SymbolTable('global', None)
     tabla_simbolos.addEntry("printf","funcion void",0,"@printf",["char"])
     tabla_simbolos.addEntry("scanf","funcion int",0,"@scanf",["char", "char"])
+    tabla_simbolos.symbols["printf"].usage_count+=1
+    tabla_simbolos.symbols["scanf"].usage_count+=1
     lista_errores = []
     iterador_token = iter(lista_tokens)
     token = next(iterador_token)
@@ -81,7 +83,7 @@ def construir_arbol(lista_tokens):
 
         # Manejador de errores des simbolos de sincronismo
         if produccion is None:
-            lista_errores.append("\n\nError de sintaxis: no se esperaba" + token.type + 'en la linea: ' + str(token.lineno) + ', posicion: ' + str(token.lexpos))
+            lista_errores.append("\n\nError de sintaxis: no se esperaba " + token.type + 'en la linea: ' + str(token.lineno) + ', posicion: ' + str(token.lexpos))
             while True:
                 if pila_semantica[-1] == "#SYNC":
                     pila_semantica.pop()

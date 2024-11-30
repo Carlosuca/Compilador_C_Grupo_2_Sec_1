@@ -36,7 +36,7 @@ class SymbolTable:
     def check_empty(self,liste):
         for a in self.symbols:
             if self.symbols[a].usage_count == 0:
-                liste.append("\n\nAdvertencia: la variable" + self.symbols[a].name + " ha sido declarado pero no es utilizada\nen la linea:" + str(self.symbols[a].line_no))
+                liste.append("\n\nAdvertencia: la variable " + self.symbols[a].name + " ha sido declarado pero no es utilizada\nen la linea: " + str(self.symbols[a].line_no))
         for e in self.children:
             self.children[e].check_empty(liste)
 
