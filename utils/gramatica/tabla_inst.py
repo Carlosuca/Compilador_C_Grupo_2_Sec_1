@@ -70,7 +70,7 @@ tabla_inst = {
 
     'RETORNO' :
     {
-            'return': ['return', 'EXPRESION'] ,
+            'return': ['return', '#Psh', 'EXPRESION','#CmR'] ,
     },
 
     'OPERACION' :

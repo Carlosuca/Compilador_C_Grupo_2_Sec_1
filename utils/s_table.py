@@ -25,9 +25,9 @@ class SymbolTable:
         self.const_counter = 0
 
     ## REvisa si la variable no existe. De ser el caso, la crea y almacena
-    def addEntry(self,name,type,ivalue=None):
+    def addEntry(self,name,type,ivalue=None,parameters=None):
         if name in self.symbols: return
-        self.symbols[name] = Identifier(name,type,ivalue)
+        self.symbols[name] = Identifier(name,type,ivalue,parameters)
 
     def addScope(self,scope):
         if scope in self.children: return

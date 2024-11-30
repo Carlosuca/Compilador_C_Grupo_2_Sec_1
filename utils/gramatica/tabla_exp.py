@@ -12,9 +12,9 @@ tabla_exp = {
 	'EXPRESION' :
 	{
 		'constante_entera': ['Term', 'Expr_P'] ,
-		'constante_caracter': ['constante_caracter'] ,
+		'constante_caracter': ['Term', 'Expr_P'] ,
 		'constante_flotante': ['Term', 'Expr_P'] ,
-		'constante_boleano': ['Term', 'Expr_P'] ,
+		'constant_caracter': ['Term', 'Expr_P'] ,
 		'identificador': ['Term', 'Expr_P'] ,
 		'parentesis_de_inicio': ['Term', 'Expr_P'] ,
 	},
@@ -45,7 +45,7 @@ tabla_exp = {
 	{
 		'constante_entera': ['Factor', 'Term_P'] ,
 		'constante_flotante': ['Factor', 'Term_P'] ,
-		'constante_boleano': ['Factor', 'Term_P'] ,
+		'constante_caracter': ['Factor', 'Term_P'] ,
 		'identificador': ['Factor', 'Term_P'] ,
 		'parentesis_de_inicio': ['Factor', 'Term_P'] ,
 	},
@@ -85,7 +85,7 @@ tabla_exp = {
 		'constante_entera': ['constante_entera', '#DcC'] ,
 		'constante_flotante': ['constante_flotante', '#DcC'] ,
 		'identificador': ['identificador', '#Ref', '#Psh'] ,
-		'constante_boleano': ['constante_boleano', '#DcC'] ,
+		'constante_caracter': ['constante_caracter', '#DcC'] ,
 		'parentesis_de_inicio': ['OpenExpr'] ,
 	},
 

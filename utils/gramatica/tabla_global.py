@@ -10,10 +10,10 @@ tabla_global = {
 
     '_GLOBAL' :
     {
-            'void': ['GLOBAL', '_GLOBAL'] ,
-            'int': ['GLOBAL', '_GLOBAL'] ,
-            'float': ['GLOBAL', '_GLOBAL'] ,
-            'char': ['GLOBAL', '_GLOBAL'] ,
+            'void': ['#Snc', 'GLOBAL', '#Pop', '_GLOBAL'] ,
+            'int': ['#Snc', 'GLOBAL', '#Pop', '_GLOBAL'] ,
+            'float': ['#Snc', 'GLOBAL', '#Pop', '_GLOBAL'] ,
+            'char': ['#Snc', 'GLOBAL', '#Pop', '_GLOBAL'] ,
             'eof': [] ,
     },
 

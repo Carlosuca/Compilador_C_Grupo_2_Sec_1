@@ -144,26 +144,33 @@ def CmP(pila_semantica, token, arbol, tabla_simbolos):
 
 def CmR(pila_semantica, token, arbol, tabla_simbolos):
     a = pila_semantica[-1]
-    b = pila_semantica[-2]
+    
     if not isinstance(a, str):
-        aa = tabla_simbolos.find_symbol(a.value)
-        if aa is None:
-            return
-        a = aa.type
-    if not isinstance(b, str):
-        bb = tabla_simbolos.find_symbol(b.value)
-        if bb is None:
-            return
-        b = bb.type
+        if not a.type == 'return':
+            aa = tabla_simbolos.find_symbol(a.value)
+            if aa is None:
+                pila_semantica.pop()
+                pila_semantica.pop()
+                pila_semantica.append("#INVALID")
+                return
+            a = aa.type
+            pila_semantica.pop()
+            pila_semantica.pop()
+        else:
+            a = 'void'
+            pila_semantica.pop()
+    elif a == "#INVALID":
+        pila_semantica.pop()
+        pila_semantica.pop()
+        return
+    b = tabla_simbolos.find_symbol(tabla_simbolos.scope[1:]).type[8:]
     if a in operando_integral or a in operando_integral.values():
         a = 'operando_integral'
     if b in operando_integral or b in operando_integral.values():
         b = 'operando_integral'
     if a != b:
-        print("PARAMETROS NO ENCAJA\n")
-        pila_semantica.pop()
+        print("RETORNO INVALIDO\n")
         return
-    pila_semantica.pop()
 
 def DcC(pila_semantica, token, arbol, tabla_simbolos):
 
@@ -173,6 +180,8 @@ def DcC(pila_semantica, token, arbol, tabla_simbolos):
     token.type = 'identificador'
     token.value = "const_" + str(tabla_simbolos.const_counter-1)
     
+def Snc(pila_semantica, token, arbol, tabla_simbolos):
+    pila_semantica.append('#SYNC')
     
 procesos_atributos = {
     '#DcT': DcT,
@@ -190,4 +199,6 @@ procesos_atributos = {
     '#CmP': CmP,
     '#DcC': DcC,
     '#CPI': CPI,
+    '#CmR': CmR,
+    '#Snc': Snc
 }

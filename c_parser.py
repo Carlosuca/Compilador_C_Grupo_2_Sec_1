@@ -27,18 +27,21 @@ def construir_arbol(lista_tokens):
     pila_arbol = [arbol]
     pila_semantica = []
     tabla_simbolos = SymbolTable('global', None)
+    tabla_simbolos.addEntry("printf","funcion void","@printf",["char", "char"])
+    tabla_simbolos.addEntry("scanf","funcion int","@scanf",["char"])
     iterador_token = iter(lista_tokens)
     token = next(iterador_token)
     top = pila[-1]
     buffer = []
     while True:
+        
         # print(pila)
-        if top[0]=="#":
-            procesos_atributos[top](pila_semantica,token,arbol,tabla_simbolos)
+        while top[0]=="#":
+            tsim = procesos_atributos[top](pila_semantica,token,arbol,tabla_simbolos)
+            if tsim is not None:
+                tabla_simbolos = tsim
             pila.pop()
             top = pila[-1]
-            continue
-
         if top == token.type:
             if top == 'eof':
                 # print('Terminado exitosamente')
@@ -81,11 +84,20 @@ def construir_arbol(lista_tokens):
             print("\nError de sintaxis: NO se esperaba", token.type)
             print('en la linea: ' + str(token.lineno), ', posicion: ', str(token.lexpos))
             while True:
+                if pila_semantica[-1] == "#SYNC":
+                    pila_semantica.pop()
+                    break
+                pila_semantica.pop()
+            while True:
                 if top == "_GLOBAL" or top == "BLOQUE":
                     break
                 pila.pop()
-                pila_arbol.pop()
                 top = pila[-1]
+            while True:
+                if repr(pila_arbol[-1]) == "_GLOBAL" or repr(pila_arbol[-1]) == "BLOQUE":
+                    break
+                pila_arbol.pop()
+
             while True:
                 try:
                     token = next(iterador_token)

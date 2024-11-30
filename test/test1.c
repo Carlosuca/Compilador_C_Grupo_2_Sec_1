@@ -9,7 +9,7 @@ char z;
 
 
 int juarez(int aa, float bb, char cc){
-    if (aa == 4) {}
+    if (aa == 4.3) {}
 }
 
 void juarez_dev();
@@ -62,5 +62,5 @@ int main() {
     // int a = 5;
     // float b = 10;
 
-    return 0;
+    return cccccc;
 }
