@@ -3,8 +3,6 @@ import ast
 from utils.node import ASTNode
 from utils.s_table import find_node_by_type
 
-#TODO LO COMENTADO AUN ESTA EN PROCESO
-
 
 # Función principal de análisis semántico
 def analisis_semantico(syntax_tree, symbol_table):
