@@ -5,18 +5,18 @@ tabla_inst = {
 
     'INSTRUCCION' :
     {
-            'identificador': ['identificador', 'USE_EXP', 'punto_coma'] ,
-            'void': ['void', 'identificador', 'parentesis_de_inicio', 'PARAMETROS', 'parentesis_de_cierre', 'FUNCION_COLA'] ,
-            'int': ['TIPO', 'identificador', 'DECLARACION'] ,
-            'float': ['TIPO', 'identificador', 'DECLARACION'] ,
-            'char': ['TIPO', 'identificador', 'DECLARACION'] ,
+            'identificador': ['identificador', '#Ref', '#Psh', 'OPERACION', '#Pop', 'punto_coma'] ,
+            'void': ['void', '#DcT', 'identificador', '#DcI', '#BFB', 'parentesis_de_inicio', 'PARAMETROS', 'parentesis_de_cierre', 'FUNCION_COLA', '#EBl', '#Pop', '#Pop'] ,
+            'int': ['TIPO', '#DcT', 'identificador', '#DcI', 'DECLARACION', '#Pop', '#Pop'] ,
+            'float': ['TIPO', '#DcT', 'identificador', '#DcI', 'DECLARACION', '#Pop', '#Pop'] ,
+            'char': ['TIPO', '#DcT', 'identificador', '#DcI', 'DECLARACION', '#Pop', '#Pop'] ,
             'return': ['RETORNO', 'punto_coma'] ,
     },
 
     'DECLARACION' :
     {
             'punto_coma': ['ASIGNACION', '_DECLARACION_CONT', 'punto_coma'] ,
-            'parentesis_de_inicio': ['parentesis_de_inicio', 'PARAMETROS', 'parentesis_de_cierre', 'FUNCION_COLA'] ,
+            'parentesis_de_inicio': [ 'parentesis_de_inicio', '#DcF', '#BFB','PARAMETROS', 'parentesis_de_cierre', 'FUNCION_COLA', '#EBl'] ,
             'coma': ['ASIGNACION', '_DECLARACION_CONT', 'punto_coma'] ,
             'asignacion': ['ASIGNACION', '_DECLARACION_CONT', 'punto_coma'] ,
             'eof': ['ASIGNACION', '_DECLARACION_CONT', 'punto_coma'] ,
@@ -25,7 +25,7 @@ tabla_inst = {
     'FUNCION_COLA' :
     {
             'punto_coma': ['punto_coma'] ,
-            'llave_de_inicio': ['llave_de_inicio', '_BLOQUE', 'llave_de_cierre'] ,
+            'llave_de_inicio': ['llave_de_inicio', 'BLOQUE', 'llave_de_cierre'] ,
     },
 
     '_DECLARACION_CONT' :
@@ -36,29 +36,29 @@ tabla_inst = {
 
     'DECLARACION_CONT' :
     {
-            'identificador': ['identificador', 'ASIGNACION'] ,
+            'identificador': ['identificador', '#Pop', '#DcI', 'ASIGNACION'] ,
     },
 
     'ASIGNACION' :
     {
             'punto_coma': [] ,
             'coma': [] ,
-            'asignacion': ['asignacion', 'EXPRESION'] ,
+            'asignacion': ['asignacion', 'EXPRESION', '#CmA'] ,
             'eof': [] ,
     },
 
     'PARAMETROS' :
     {
             'parentesis_de_cierre': [] ,
-            'int': ['TIPO', 'identificador', '_PARAMETROS'] ,
-            'float': ['TIPO', 'identificador', '_PARAMETROS'] ,
-            'char': ['TIPO', 'identificador', '_PARAMETROS'] ,
+            'int': ['TIPO', '#DcT', 'identificador', '#DcI','#RgP', '#Pop', '#Pop', '_PARAMETROS'] ,
+            'float': ['TIPO', '#DcT', 'identificador', '#DcI','#RgP', '#Pop', '#Pop', '_PARAMETROS'] ,
+            'char': ['TIPO', '#DcT', 'identificador', '#DcI','#RgP', '#Pop', '#Pop', '_PARAMETROS'] ,
     },
 
     '_PARAMETROS' :
     {
             'parentesis_de_cierre': [] ,
-            'coma': ['coma', 'TIPO', 'identificador', '_PARAMETROS'] ,
+            'coma': ['coma', 'TIPO', '#DcT', 'identificador', '#DcI','#RgP', '#Pop', '#Pop', '_PARAMETROS'] ,
     },
 
     'TIPO' :
@@ -73,7 +73,7 @@ tabla_inst = {
             'return': ['return', 'EXPRESION'] ,
     },
 
-    'USE_EXP' :
+    'OPERACION' :
     {
             'punto_coma': ['ASIGNACION'] ,
             'parentesis_de_inicio': ['LLAMAR_FUNCION'] ,
@@ -82,36 +82,31 @@ tabla_inst = {
 
     'LLAMAR_FUNCION' :
     {
-            'parentesis_de_inicio': ['parentesis_de_inicio', 'ARGUMENT', 'parentesis_de_cierre'] ,
+            'parentesis_de_inicio': ['#CPI', 'parentesis_de_inicio', 'ARGUMENT', 'parentesis_de_cierre', '#Pop'] ,
     },
 
     'ARGUMENT' :
     {
             'parentesis_de_cierre': [] ,
-            '*': ['EXPRESION', '_ARGUMENT'] ,
+            '*': ['EXPRESION', '#CmP', '_ARGUMENT'] ,
     },
 
     '_ARGUMENT' :
     {
             'parentesis_de_cierre': [] ,
-            'parentesis_de_inicio': [] ,
-            'coma': ['coma', 'EXPRESION', '_ARGUMENT'] ,
+            'coma': ['coma', 'EXPRESION', '#CmP', '_ARGUMENT'] ,
     },
 }
-
-# S -> INSTRUCCION _INSTRUCCION
-# _INSTRUCCION -> INSTRUCCION _INSTRUCCION
-# _INSTRUCCION -> ''
 
 # INSTRUCCION -> identificador EXPRESION punto_coma
 # INSTRUCCION -> RETORNO punto_coma
 
 # INSTRUCCION -> TIPO identificador DECLARACION
-# INSTRUCCION -> void identificador parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA
-# DECLARACION -> ASIGNACION _DECLARACION_CONT punto_coma
-# DECLARACION -> parentesis_de_inicio PARAMETROS parentesis_de_cierre FUNCION_COLA 
-# FUNCION_COLA -> punto_coma
-# FUNCION_COLA -> llave_de_inicio _BLOQUE llave_de_cierre
+# INSTRUCCION -> void identificador parentesis_de_inicio #DecF PARAMETROS parentesis_de_cierre FUNCION_COLA
+# DECLARACION -> ASIGNACION #DecVI _DECLARACION_CONT #DecVC punto_coma
+# DECLARACION -> parentesis_de_inicio #DecF PARAMETROS parentesis_de_cierre FUNCION_COLA 
+# FUNCION_COLA -> punto_coma #ClsScp
+# FUNCION_COLA -> llave_de_inicio BLOQUE llave_de_cierre #ClsScp
 
 # _DECLARACION_CONT -> coma DECLARACION_CONT _DECLARACION_CONT
 # _DECLARACION_CONT -> ''

@@ -1,9 +1,11 @@
+from utils.s_table import SymbolTable
 from utils.tokens import tokens
 from utils.gramatica.no_terminales import *
 from utils.gramatica.tabla_inst import *
 from utils.gramatica.tabla_bloque import *
 from utils.gramatica.tabla_exp import *
 from utils.gramatica.tabla_global import *
+from utils.p_atributos import procesos_atributos
 import copy
 
 tabla_parser = {}
@@ -18,26 +20,41 @@ for tabla in [tabla_global, tabla_bloque, tabla_inst, tabla_exp]:
 from utils.node import Nodo
 
 
+
 def construir_arbol(lista_tokens):
     pila = ['eof', 'PROGRAMA']
     arbol = Nodo('PROGRAMA', "")
     pila_arbol = [arbol]
+    pila_semantica = []
+    tabla_simbolos = SymbolTable('global', None)
     iterador_token = iter(lista_tokens)
     token = next(iterador_token)
     top = pila[-1]
     buffer = []
     while True:
         # print(pila)
+        if top[0]=="#":
+            procesos_atributos[top](pila_semantica,token,arbol,tabla_simbolos)
+            pila.pop()
+            top = pila[-1]
+            continue
+
         if top == token.type:
             if top == 'eof':
                 # print('Terminado exitosamente')
-                return arbol
+                return arbol, tabla_simbolos
             pila.pop()
             top = pila[-1]
             pila_arbol[-1].value = token.value 
             pila_arbol[-1].children = []
             # print(1.5, pila_arbol[-1])
             pila_arbol.pop()
+            while top[0]=="#":
+                tsim = procesos_atributos[top](pila_semantica,token,arbol,tabla_simbolos)
+                if tsim is not None:
+                    tabla_simbolos = tsim
+                pila.pop()
+                top = pila[-1]
             if buffer:
                 token = buffer.pop(0)
                 continue
@@ -82,7 +99,7 @@ def construir_arbol(lista_tokens):
                     break
             continue
 
-        nodos = list(map(lambda i: Nodo(i, ""), produccion))
+        nodos = list(map(lambda i: Nodo(i, ""), list(filter(lambda e: e[0] != "#",produccion))))
         pila_arbol[-1].children = nodos
         pila.pop()
         pila_arbol.pop()
@@ -90,7 +107,7 @@ def construir_arbol(lista_tokens):
         agregar_produccion(pila, produccion)
         agregar_produccion(pila_arbol, nodos)
         top = pila[-1]
-        
+
 
 def buscar_produccion(no_terminal, terminal):
     # if terminal not in no_terminales:

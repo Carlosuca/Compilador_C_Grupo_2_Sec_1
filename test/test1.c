@@ -3,32 +3,32 @@ int sumar(int a, int b) {
     return a + b;
 }
 
-// Función para restar dos números
-int restar(int a, int b) {
-    return a - b;
+int a = 5*(4==2-78/(4+3)), zz, yy=8;
+int n1, n2, n3;
+char z;
+
+
+int juarez(int aa, float bb, char cc){
+    if (aa == 4) {}
 }
 
-// Función para multiplicar dos números
-int multiplicar(int a, int b) {
-    return a * b;
-}
-
-// Función para dividir dos números
-float dividir(int a, int b) {
-    if (b == 0) {
-        return 0;  // Devuelve 0 como valor de error
-    } else {
-        printf('d');
-        return a / b;
-    }
-}
+void juarez_dev();
 
 int main() {
-    int num1, num2, num3;
-    char operacion;
-    char operaciones = 'x';
+
+    int b =;
+
+    int b = 15;
+
+    juarez(b,b,b);
+    n = 15;
     
-    operaciones = 'D';
+    for (int i = 0; i == 4; i+1){
+        if(b == 'x') {
+
+        }
+    }
+    // printf();
 
 
     scanf('d', num1);
@@ -52,6 +52,15 @@ int main() {
             } 
         }
     }
+
+    // for (int i = a; i == 365; i+1){
+    //     int a = printf(i);
+    //     x = 25;
+    // }
+    // bool isActive = true;
+
+    // int a = 5;
+    // float b = 10;
 
     return 0;
 }
