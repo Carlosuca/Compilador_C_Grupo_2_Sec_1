@@ -13,20 +13,20 @@ tabla_bloque = {
 
         'INSTRUCCION_B' :
         {
-                'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C', 'BLOQUE_ELSE'] ,
-                'bucle_while': ['bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C'] ,
-                'bucle_do': ['bucle_do', 'INSTRUCCION_C', 'bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'punto_coma'] ,
-                'bucle_for': ['bucle_for', 'parentesis_de_inicio', 'INSTRUCCION',  'EXPRESION', 'punto_coma',  'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C'] ,
+                'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', '#BBl', 'INSTRUCCION_C', '#EBl', 'BLOQUE_ELSE'] ,
+                'bucle_while': ['bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', '#BBl', 'INSTRUCCION_C', '#EBl'] ,
+                'bucle_do': ['bucle_do', '#BBl', 'INSTRUCCION_C', '#EBl', 'bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'punto_coma'] ,
+                'bucle_for': ['bucle_for', '#BBl', 'parentesis_de_inicio', 'INSTRUCCION',  'EXPRESION', 'punto_coma',  'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C', '#EBl'] ,
                 '*': ['INSTRUCCION'] ,
                 'llave_de_inicio': ['INSTRUCCION'] ,
         },
 
         'INSTRUCCION_C' :
         {
-                'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C', 'condicion_else', 'INSTRUCCION_C'] ,
-                'bucle_while': ['bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C'] ,
-                'bucle_do': ['bucle_do', 'INSTRUCCION_C', 'bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'punto_coma'] ,
-                'bucle_for': ['bucle_for', 'parentesis_de_inicio', 'INSTRUCCION',  'EXPRESION', 'punto_coma',  'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C'] ,
+                'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', '#BBl', 'INSTRUCCION_C', '#EBl', 'condicion_else', '#BBl', 'INSTRUCCION_C', '#EBl'] ,
+                'bucle_while': ['bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', '#BBl', 'INSTRUCCION_C', '#EBl'] ,
+                'bucle_do': ['bucle_do', '#BBl', 'INSTRUCCION_C', '#EBl', 'bucle_while', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'punto_coma'] ,
+                'bucle_for': ['bucle_for', '#BBl', 'parentesis_de_inicio', 'INSTRUCCION',  'EXPRESION', 'punto_coma',  'EXPRESION', 'parentesis_de_cierre', 'INSTRUCCION_C', '#EBl'] ,
                 '*': ['INSTRUCCION'] ,
                 'llave_de_inicio': ['INSTRUCCION'] ,
         },
@@ -37,7 +37,7 @@ tabla_bloque = {
                 'bucle_while': [] ,
                 'bucle_do': [] ,
                 'bucle_for': [] ,
-                'condicion_else': ['condicion_else', 'COLA_ELSE'] ,
+                'condicion_else': ['condicion_else', '#BBl', 'COLA_ELSE', '#EBl'] ,
                 '*': [] ,
                 'llave_de_inicio': [] ,
                 'llave_de_cierre': [] ,
@@ -46,7 +46,7 @@ tabla_bloque = {
 
         'COLA_ELSE' :
         {
-                'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', 'COLA_ELSE'] ,
+                'condicion_if': ['condicion_if', 'parentesis_de_inicio', 'EXPRESION', 'parentesis_de_cierre', '#BBl', 'COLA_ELSE', '#EBl'] ,
                 '*': ['INSTRUCCION'] ,
                 'llave_de_inicio': ['INSTRUCCION'] ,
         },

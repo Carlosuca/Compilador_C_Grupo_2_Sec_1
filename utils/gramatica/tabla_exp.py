@@ -27,17 +27,17 @@ tabla_exp = {
 		'operador_y': ['LogicalExpr'] ,
 		'operador_o': ['LogicalExpr'] ,
 		'igual_que': ['LogicalExpr'] ,
-		'punto_coma': [] ,
+		'*': [] ,
 	},
 
 	'PlusExpr_P' :
 	{
-		'mas': ['mas', 'Term', 'Expr_P'] ,
+		'mas': ['mas', 'Term', '#Cmp', 'Expr_P'] ,
 	},
 
 	'MinusExpr_P' :
 	{
-		'menos': ['menos', 'Term', 'Expr_P'] ,
+		'menos': ['menos', 'Term', '#Cmp', 'Expr_P'] ,
 	},
 
 	'Term' :
@@ -60,30 +60,30 @@ tabla_exp = {
 		'operador_y': [] ,
 		'operador_o': [] ,
 		'igual_que': [] ,
-		'punto_coma': [] ,
+		'*': [] ,
 	},
 
 	'MultTerm_P' :
 	{
-		'multiplicacion': ['multiplicacion', 'Factor', 'Term_P'] ,
+		'multiplicacion': ['multiplicacion', 'Factor', '#Cmp', 'Term_P'] ,
 	},
 
 	'DivTerm_P' :
 	{
-		'division': ['division', 'Factor', 'Term_P'] ,
+		'division': ['division', 'Factor', '#Cmp', 'Term_P'] ,
 	},
 
 	'ModTerm_P' :
 	{
-		'modulo': ['modulo', 'Factor', 'Term_P'] ,
+		'modulo': ['modulo', 'Factor', '#Cmp', 'Term_P'] ,
 	},
 
 	'Factor' :
 	{
-		'constante_entera': ['constante_entera'] ,
-		'constante_flotante': ['constante_flotante'] ,
-		'identificador': ['identificador'] ,
-		'constante_boleano': ['constante_boleano'] ,
+		'constante_entera': ['constante_entera', '#DcC'] ,
+		'constante_flotante': ['constante_flotante', '#DcC'] ,
+		'identificador': ['identificador', '#Ref', '#Psh'] ,
+		'constante_boleano': ['constante_boleano', '#DcC'] ,
 		'parentesis_de_inicio': ['OpenExpr'] ,
 	},
 
@@ -94,8 +94,8 @@ tabla_exp = {
 
 	'LogicalExpr' :
 	{
-		'operador_y': ['operador_y', 'EXPRESION'] ,
-		'operador_o': ['operador_o', 'EXPRESION'] ,
-		'igual_que': ['igual_que', 'EXPRESION'] ,
+		'operador_y': ['operador_y', 'EXPRESION', '#Cmp'] ,
+		'operador_o': ['operador_o', 'EXPRESION', '#Cmp'] ,
+		'igual_que': ['igual_que', 'EXPRESION', '#Cmp'] ,
 	},
 }
