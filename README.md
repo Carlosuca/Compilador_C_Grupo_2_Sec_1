@@ -44,7 +44,7 @@ Un ejemplo sencillo del funcionamiento del compilador sería el siguiente:
 ```c
 int x = 10;
 y = x + 3;
-
+```
 ## Resultados
 
 - **Tokens**: `int`, `x`, `=`, `10`, `;`, `y`, `=`, `x`, `+`, `3`, `;`.
