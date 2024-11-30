@@ -24,10 +24,13 @@ tabla_exp = {
 		'mas': ['PlusExpr_P'] ,
 		'menos': ['MinusExpr_P'] ,
 		'parentesis_de_cierre': [] ,
+		'parentesis_de_inicio': [] ,
 		'operador_y': ['LogicalExpr'] ,
 		'operador_o': ['LogicalExpr'] ,
 		'igual_que': ['LogicalExpr'] ,
 		'punto_coma': [] ,
+		'coma': [] ,
+
 	},
 
 	'PlusExpr_P' :
@@ -57,10 +60,12 @@ tabla_exp = {
 		'division': ['DivTerm_P'] ,
 		'modulo': ['ModTerm_P'] ,
 		'parentesis_de_cierre': [] ,
+		'parentesis_de_inicio': ['LLAMAR_FUNCION'] ,
 		'operador_y': [] ,
 		'operador_o': [] ,
 		'igual_que': [] ,
 		'punto_coma': [] ,
+		'coma': [] ,
 	},
 
 	'MultTerm_P' :

@@ -5,7 +5,7 @@ tabla_inst = {
 
     'INSTRUCCION' :
     {
-            'identificador': ['identificador', 'EXPRESION', 'punto_coma'] ,
+            'identificador': ['identificador', 'USE_EXP', 'punto_coma'] ,
             'void': ['void', 'identificador', 'parentesis_de_inicio', 'PARAMETROS', 'parentesis_de_cierre', 'FUNCION_COLA'] ,
             'int': ['TIPO', 'identificador', 'DECLARACION'] ,
             'float': ['TIPO', 'identificador', 'DECLARACION'] ,
@@ -73,7 +73,7 @@ tabla_inst = {
             'return': ['return', 'EXPRESION'] ,
     },
 
-    'EXPRESION' :
+    'USE_EXP' :
     {
             'punto_coma': ['ASIGNACION'] ,
             'parentesis_de_inicio': ['LLAMAR_FUNCION'] ,
@@ -94,6 +94,7 @@ tabla_inst = {
     '_ARGUMENT' :
     {
             'parentesis_de_cierre': [] ,
+            'parentesis_de_inicio': [] ,
             'coma': ['coma', 'EXPRESION', '_ARGUMENT'] ,
     },
 }

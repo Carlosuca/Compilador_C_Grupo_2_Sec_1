@@ -89,7 +89,6 @@ class SymbolTable:
         current_scope = self.find_scope(scope_name)
         if not current_scope:
             return False  # Ámbito no encontrado
-        
         # Buscar en el scope actual y sus padres
         while current_scope:
             if identifier_name in current_scope.symbols:
@@ -156,14 +155,15 @@ def build_symbol_table(node, symbol_table):
             if inst_node is not None:
                 global block_counter
                 block_counter += 1
-                symbol_table.addScope("@blk_"+str(node.children[0].value))
-                node.addScope("@blk_"+str(node.children[0].value))
+                new_scope = f"{symbol_table.scope}_@blk_{str(node.children[0].value)}"
+                symbol_table.addScope(new_scope)
+                symbol_table.addScope(new_scope)
                 blk_node = find_node_by_type(inst_node, "BLOQUE", 2)
                 if blk_node is not None:
-                    build_symbol_table(blk_node,symbol_table.children["@blk_"+str(node.children[0].value)])
+                    build_symbol_table(blk_node,symbol_table.children[new_scope])
                 else:
-                    build_symbol_table(find_node_by_type(inst_node, "INSTRUCCION", 1),symbol_table.children["@blk_"+str(node.children[0].value)])
-                symbol_table = symbol_table.children["@blk_"+str(node.children[0].value)]
+                    build_symbol_table(find_node_by_type(inst_node, "INSTRUCCION", 1),symbol_table.children[new_scope])
+                symbol_table = symbol_table.children[new_scope]
 
         if node.type == "INSTRUCCION_B" or node.type == "GLOBAL":
             type_node = find_node_by_type(node, "INSTRUCCION", 1)
@@ -180,25 +180,42 @@ def build_symbol_table(node, symbol_table):
                 type_node = find_node_by_type(source, "void", 1)
                 data_type = 'void'
             if type_node is not None:
-                id_node = find_node_by_type(source, 'identificador',1).value
-                func = find_node_by_type(source, "FUNCIONG_COLA", 2)
-                if func is None:
-                    func = find_node_by_type(source, "FUNCION_COLA", 2)
-                if func is not None:
-                    symbol_table.addEntry(id_node, "function " + data_type, "@" + id_node)
-                    func_def = find_node_by_type(func, "BLOQUE", 1)
-                    if func_def is not None:
-                        symbol_table.addScope(symbol_table.symbols[id_node].ivalue)
-                        node.addScope(symbol_table.symbols[id_node].ivalue)
-                        # node.print_values()
+                
+                id_node = find_node_by_type(source, 'identificador',1)
+                
+                while(id_node is not None):
 
-                        param = find_node_by_type(node, "PARAMETROS", 2)
-                        if param is not None:
-                            build_symbol_table(param,symbol_table.children[symbol_table.symbols[id_node].ivalue])
-                        build_symbol_table(func_def,symbol_table.children[symbol_table.symbols[id_node].ivalue])
-                else:
-                    if type_node.type != "void":
-                        symbol_table.addEntry(id_node,data_type)
+                    
+                    id_value = id_node.value
+                    
+                    func = find_node_by_type(source, "FUNCIONG_COLA", 2)
+                    if func is None:
+                        func = find_node_by_type(source, "FUNCION_COLA", 2)
+                    if func is not None:
+                        symbol_table.addEntry(id_value, "function " + data_type, "@" + id_value)
+                        func_def = find_node_by_type(func, "BLOQUE", 1)
+                        if func_def is not None:
+                            new_scope = f"{symbol_table.scope}_{symbol_table.symbols[id_value].ivalue}"
+                            symbol_table.addScope(new_scope)
+                            node.addScope(new_scope)
+                            # node.print_values()
+
+                            param = find_node_by_type(node, "PARAMETROS", 2)
+                            if param is not None:
+                                build_symbol_table(param,symbol_table.children[new_scope])
+                            build_symbol_table(func_def,symbol_table.children[new_scope])
+                    else:
+                        if type_node.type != "void":
+                            symbol_table.addEntry(id_value,data_type)
+                
+                    
+                    source = find_node_by_type(source, '_DECLARACION_CONT')
+
+                    if(source is not None):
+                        id_node = find_node_by_type(source, 'identificador')
+                    else: 
+                        id_node = None
+
 
         
         if node.type == "PARAMETROS" or node.type == "_PARAMETROS":
@@ -217,8 +234,6 @@ def build_symbol_table(node, symbol_table):
                 build_symbol_table(child, symbol_table)
 
         if node.type == "PROGRAMA":
-            symbol_table.addEntry("printf","function void","@printf")
-            symbol_table.addEntry("scanf","function void","@scanf")
             build_symbol_table(find_node_by_type(node, "_GLOBAL", 1), symbol_table)
                 
 
@@ -231,6 +246,8 @@ def construir_tabla(tree):
     global block_counter
     block_counter = 0
     symbol_table = build_symbol_table(find_node_by_type(tree, "_GLOBAL", 1), SymbolTable('global', None))
+    symbol_table.addEntry("printf","function void","@printf")
+    symbol_table.addEntry("scanf","function void","@scanf")
     tree.addScope('global')
     # node.print_values()
     # symbol_table = build_symbol_table(tree, SymbolTable('@global', None))

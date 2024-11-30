@@ -96,7 +96,7 @@ def buscar_produccion(no_terminal, terminal):
     # if terminal not in no_terminales:
     #     return None
 
-    # print(2, "-> ", no_terminal, terminal, "\n")
+    # print("-> ", no_terminal, terminal, "\n")
 
     if no_terminal not in tabla_parser:
         return None
