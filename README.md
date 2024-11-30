@@ -1,6 +1,38 @@
 # Documentación 
 
-Este repositorio contiene el desarrollo de un compilador modular para el lenguaje de programación C. Fue creado como parte del curso de **Teoría de Lenguajes de Programación** en la **Universidad Centroamericana "José Simeón Cañas"**. El objetivo principal es implementar un sistema que permita analizar y validar código fuente mediante procesos de análisis léxico, sintáctico y semántico, asegurando así la calidad del código generado y optimizando el desarrollo.
+Este repositorio contiene el desarrollo de un compilador modular para el lenguaje de programación C. Fue creado como parte del curso de **Teoría de Lenguajes de Programación** en la **Universidad Centroamericana "José Simeón Cañas"**.
+
+El objetivo principal es implementar un sistema que permita analizar y validar código fuente mediante procesos de análisis léxico, sintáctico y semántico, asegurando así la calidad del código generado y optimizando el desarrollo.
+
+## Uso: 
+
+Uso más basico
+
+ ```bash
+   python3 c_compiler.py [c_file_pat] [--show-lista] [--show-tabla] [--show-arbol]
+ ```
+
+ ### Argumentos: 
+- `c_file_path` : Archivo ".c" con el codigo a compilar
+
+ ### Argumentos opcionales: 
+
+ - `--show-lista` : Muestra la lista de tokens extraidos del archivo [c_file_path]
+ - `--show-tabla` : Muestra la tabla de simbolos, identificadores con su valor inicial, tipo y ambito
+ - `--show-arbol` : muetra el arbol de sintaxis creado a partir de los tokens
+
+
+## Requisitos: 
+   ### Runtime:
+   - Python 3 
+   ### Librerias:
+   - ply
+   - pandas
+   - Numpy
+
+   ```bash
+   pip install ply, pandas 
+   ```
 
 ## Componentes del Compilador
 
@@ -13,7 +45,7 @@ El compilador cuenta con tres componentes principales:
    Implementado en el archivo `c_parser.py`, utiliza las reglas gramaticales del lenguaje C para construir un árbol sintáctico, validando la estructura lógica del código y gestionando errores de sintaxis.
 
 3. **Analizador Semántico**  
-   Contenido en `c_semantic.py`, realiza verificaciones como la correcta declaración y uso de variables, la compatibilidad de tipos y genera advertencias para optimización del código.
+   Procesa los atributos de la gramatica extendida a medida que `c_parser.py` va contruyendo el arbol de syntaxis y la tabla de simbolos, los procesos aosciados a estas etiquetas estan contenidas en `p_atributos.py`, realiza verificaciones como la correcta declaración y uso de variables, la compatibilidad de tipos y genera advertencias para optimización del código.
 
 ## Propósito
 
