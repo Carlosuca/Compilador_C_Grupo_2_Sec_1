@@ -67,7 +67,7 @@ tabla_global = {
             'void': [] ,
             'punto_coma': [] ,
             'coma': [] ,
-            'asignacion': ['asignacion', 'EXPRESION_CONST'] ,
+            'asignacion': ['asignacion', 'EXPRESION'] ,
             'int': [] ,
             'float': [] ,
             'char': [] ,

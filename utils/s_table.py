@@ -22,6 +22,7 @@ class SymbolTable:
         self.symbols = {} ##Simbolos en el ambito actual
         self.children = {} ##Sub-ambitos
         self.block_counter = 0
+        self.const_counter = 0
 
     ## REvisa si la variable no existe. De ser el caso, la crea y almacena
     def addEntry(self,name,type,ivalue=None):
@@ -99,6 +100,40 @@ class SymbolTable:
             current_scope = current_scope.parent
         
         return False
+    
+    def is_declared(self, identifier_name,depth=-1):
+
+        # Buscar el scope
+        current_scope = self
+        
+        # Buscar en el scope actual y sus padres
+        while current_scope:
+            
+            if identifier_name in current_scope.symbols:
+                return True
+            current_scope = current_scope.parent
+            if depth == 0:
+                break
+            depth-=1
+        
+        return False
+    
+    def find_symbol(self, identifier_name,depth=-1):
+
+        # Buscar el scope
+        current_scope = self
+        
+        # Buscar en el scope actual y sus padres
+        while current_scope:
+            
+            if identifier_name in current_scope.symbols:
+                return current_scope.symbols[identifier_name]
+            current_scope = current_scope.parent
+            if depth == 0:
+                break
+            depth-=1
+        
+        return None
 
     def find_scope(self, scope_name):
         """

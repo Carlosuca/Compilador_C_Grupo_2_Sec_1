@@ -5,7 +5,7 @@ tabla_inst = {
 
     'INSTRUCCION' :
     {
-            'identificador': ['identificador', 'EXPRESION', 'punto_coma'] ,
+            'identificador': ['identificador', '#Ref', '#Psh', 'OPERACION', '#Pop', 'punto_coma'] ,
             'void': ['void', '#DcT', 'identificador', '#DcI', '#BFB', 'parentesis_de_inicio', 'PARAMETROS', 'parentesis_de_cierre', 'FUNCION_COLA', '#EBl', '#Pop', '#Pop'] ,
             'int': ['TIPO', '#DcT', 'identificador', '#DcI', 'DECLARACION', '#Pop', '#Pop'] ,
             'float': ['TIPO', '#DcT', 'identificador', '#DcI', 'DECLARACION', '#Pop', '#Pop'] ,
@@ -43,7 +43,7 @@ tabla_inst = {
     {
             'punto_coma': [] ,
             'coma': [] ,
-            'asignacion': ['asignacion', 'EXPRESION'] ,
+            'asignacion': ['asignacion', 'EXPRESION', '#CmA'] ,
             'eof': [] ,
     },
 
@@ -73,7 +73,7 @@ tabla_inst = {
             'return': ['return', 'EXPRESION'] ,
     },
 
-    'EXPRESION' :
+    'OPERACION' :
     {
             'punto_coma': ['ASIGNACION'] ,
             'parentesis_de_inicio': ['LLAMAR_FUNCION'] ,
@@ -82,19 +82,19 @@ tabla_inst = {
 
     'LLAMAR_FUNCION' :
     {
-            'parentesis_de_inicio': ['parentesis_de_inicio', 'ARGUMENT', 'parentesis_de_cierre'] ,
+            'parentesis_de_inicio': ['#CPI', 'parentesis_de_inicio', 'ARGUMENT', 'parentesis_de_cierre', '#Pop'] ,
     },
 
     'ARGUMENT' :
     {
             'parentesis_de_cierre': [] ,
-            '*': ['EXPRESION', '_ARGUMENT'] ,
+            '*': ['EXPRESION', '#CmP', '_ARGUMENT'] ,
     },
 
     '_ARGUMENT' :
     {
             'parentesis_de_cierre': [] ,
-            'coma': ['coma', 'EXPRESION', '_ARGUMENT'] ,
+            'coma': ['coma', 'EXPRESION', '#CmP', '_ARGUMENT'] ,
     },
 }
 
