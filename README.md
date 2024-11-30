@@ -1,4 +1,4 @@
-# Documentación del Analizador Sintáctico
+# Documentación 
 
 Este repositorio contiene el desarrollo de un compilador modular para el lenguaje de programación C. Fue creado como parte del curso de **Teoría de Lenguajes de Programación** en la **Universidad Centroamericana "José Simeón Cañas"**. El objetivo principal es implementar un sistema que permita analizar y validar código fuente mediante procesos de análisis léxico, sintáctico y semántico, asegurando así la calidad del código generado y optimizando el desarrollo.
 
