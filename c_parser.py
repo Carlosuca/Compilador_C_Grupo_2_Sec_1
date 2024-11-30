@@ -27,8 +27,9 @@ def construir_arbol(lista_tokens):
     pila_arbol = [arbol]
     pila_semantica = []
     tabla_simbolos = SymbolTable('global', None)
-    tabla_simbolos.addEntry("printf","funcion void","@printf",["char", "char"])
-    tabla_simbolos.addEntry("scanf","funcion int","@scanf",["char"])
+    tabla_simbolos.addEntry("printf","funcion void",0,"@printf",["char"])
+    tabla_simbolos.addEntry("scanf","funcion int",0,"@scanf",["char", "char"])
+    lista_errores = []
     iterador_token = iter(lista_tokens)
     token = next(iterador_token)
     top = pila[-1]
@@ -37,15 +38,15 @@ def construir_arbol(lista_tokens):
         
         # print(pila)
         while top[0]=="#":
-            tsim = procesos_atributos[top](pila_semantica,token,arbol,tabla_simbolos)
+            tsim = procesos_atributos[top](pila_semantica,token,arbol,tabla_simbolos,lista_errores)
             if tsim is not None:
                 tabla_simbolos = tsim
             pila.pop()
             top = pila[-1]
         if top == token.type:
             if top == 'eof':
-                # print('Terminado exitosamente')
-                return arbol, tabla_simbolos
+                tabla_simbolos.check_empty(lista_errores)
+                return arbol, tabla_simbolos, lista_errores
             pila.pop()
             top = pila[-1]
             pila_arbol[-1].value = token.value 
@@ -53,7 +54,7 @@ def construir_arbol(lista_tokens):
             # print(1.5, pila_arbol[-1])
             pila_arbol.pop()
             while top[0]=="#":
-                tsim = procesos_atributos[top](pila_semantica,token,arbol,tabla_simbolos)
+                tsim = procesos_atributos[top](pila_semantica,token,arbol,tabla_simbolos,lista_errores)
                 if tsim is not None:
                     tabla_simbolos = tsim
                 pila.pop()
@@ -69,8 +70,7 @@ def construir_arbol(lista_tokens):
 
         # Manejador de errores de recuperacion
         if top in tokens:               
-            print("\nError de sintaxis: se esperaba ", top)
-            print('en la linea: ' + str(token.lineno), ', posicion: ', str(token.lexpos))
+            lista_errores.append("\n\nError de sintaxis: se esperaba " + top + 'en la linea: ' + str(token.lineno) + ', posicion: ', str(token.lexpos))
             
             buffer.append(copy.copy(token))
             token.type = top
@@ -81,8 +81,7 @@ def construir_arbol(lista_tokens):
 
         # Manejador de errores des simbolos de sincronismo
         if produccion is None:
-            print("\nError de sintaxis: NO se esperaba", token.type)
-            print('en la linea: ' + str(token.lineno), ', posicion: ', str(token.lexpos))
+            lista_errores.append("\n\nError de sintaxis: no se esperaba" + token.type + 'en la linea: ' + str(token.lineno) + ', posicion: ' + str(token.lexpos))
             while True:
                 if pila_semantica[-1] == "#SYNC":
                     pila_semantica.pop()

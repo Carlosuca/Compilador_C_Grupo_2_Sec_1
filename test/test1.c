@@ -18,7 +18,7 @@ int main() {
 
     int b =;
 
-    int b = 15;
+    int b = juarez;
 
     juarez(b,b,b);
     n = 15;

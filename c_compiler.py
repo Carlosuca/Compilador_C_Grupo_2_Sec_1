@@ -14,7 +14,7 @@ def main(input_file, show_arbol, show_tabla, show_lista):
         imprimir_tokens(lista)
         print("\n")
     
-    arbol, tabla = construir_arbol(lista)
+    arbol, tabla, errores = construir_arbol(lista)
 
     if show_arbol:
         print("Árbol construido:")
@@ -22,14 +22,16 @@ def main(input_file, show_arbol, show_tabla, show_lista):
 
     # TODO: FALTAN COMENTARIOS
 
-    tabla = construir_tabla(arbol)
+    # tabla = construir_tabla(arbol)
 
     if show_tabla:
         print("Tabla de símbolos...")
         print("\n")
         print(tabla)
 
-    analisis_semantico(arbol, tabla)
+    for i in errores:
+        print(i)
+    # analisis_semantico(arbol, tabla)
 
     print('\n')
     # input("Presiona enter para salir")
