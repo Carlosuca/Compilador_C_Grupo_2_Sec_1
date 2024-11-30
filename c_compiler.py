@@ -1,7 +1,6 @@
 import argparse
 from c_lexer import *
 from c_parser import *
-from c_semantic import *
 from utils.s_table import *
 
 def main(input_file, show_arbol, show_tabla, show_lista):
